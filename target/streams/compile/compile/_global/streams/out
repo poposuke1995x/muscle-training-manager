@@ -1,0 +1,4 @@
+[0m[[0m[33mwarn[0m] [0m[0m/root/muscle-training_manager/app/infrastructure/LiftActionRepository.scala:56:7: multiarg infix syntax looks like a tuple and will be deprecated[0m
+[0m[[0m[33mwarn[0m] [0m[0m    ) <> (LiftAction.tupled, LiftAction.unapply)[0m
+[0m[[0m[33mwarn[0m] [0m[0m      ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
