@@ -8,7 +8,7 @@ create table if not exists lift_types (
   reference_url varchar(200),
   description varchar(200),
   imported_count integer default 0,
-  server_uid varchar(200) references users(firebase_uid),
+  server_uid varchar(200) references users(firebase_uid) on delete cascade,
   default_rep integer default 0,
   default_weight integer default 0,
   default_set_count integer default 0,

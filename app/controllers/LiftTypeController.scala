@@ -4,21 +4,24 @@ import domain._
 import infrastructure.LiftTypeRepository
 import javax.inject._
 import play.api.mvc._
+
 import scala.concurrent.ExecutionContext
 import org.json4s._
 import org.json4s.native.JsonMethods
 import org.json4s.native.Serialization
+import usecase.LiftType.ListLiftTypeService
+
 import scala.util.{Failure, Success, Try}
 
 @Singleton
 class LiftTypeController @Inject()
-(controllerComponents: ControllerComponents, liftTypeRepository: LiftTypeRepository)
+(controllerComponents: ControllerComponents, liftTypeRepository: LiftTypeRepository, listLiftTypeService: ListLiftTypeService)
 (implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
 
   implicit val formats: DefaultFormats.type = DefaultFormats
 
   def index: Action[AnyContent] = Action.async {
-    liftTypeRepository.all().map(liftTypes =>
+    listLiftTypeService().map(liftTypes =>
       Ok(Serialization.write(liftTypes))
     )
   }

@@ -5,10 +5,10 @@
 create table if not exists training_menu (
   id serial primary key,
   name varchar(50) not null,
-  category_id integer references categories(id),
+  category_id integer references categories(id) on delete cascade,
   description varchar(200),
   imported_count integer default 0,
-  user_uid varchar(200) references users(firebase_uid),
+  user_uid varchar(200) references users(firebase_uid) on delete cascade,
   share_flag boolean default false
   );
 
