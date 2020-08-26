@@ -13,7 +13,7 @@ class LiftActionRepository @Inject()(protected val dbConfigProvider: DatabaseCon
 
   private val LiftActions = TableQuery[LiftActionsTable]
 
-  def all(): Future[Seq[LiftAction]] = db.run(LiftActions.result)
+  def index(): Future[Seq[LiftAction]] = db.run(LiftActions.result)
 
   def findById(id: Int): Future[LiftAction] = db.run(LiftActions.filter(_.id === id).result.head)
 

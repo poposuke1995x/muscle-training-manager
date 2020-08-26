@@ -13,7 +13,7 @@ class TargetRepository @Inject()(protected val dbConfigProvider: DatabaseConfigP
 
   private val Targets = TableQuery[TargetsTable]
 
-  def all(): Future[Seq[Target]] = db.run(Targets.result)
+  def index(): Future[Seq[Target]] = db.run(Targets.result)
 
   def findById(id: Int): Future[Target] = db.run(Targets.filter(_.id === id).result.head)
 

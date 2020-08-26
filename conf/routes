@@ -1,34 +1,34 @@
 # User
-GET     /users                             controllers.UserController.index
-POST    /users                            controllers.UserController.store
-GET     /users/:user_id                    controllers.UserController.show(user_id: Int)
-PUT     /users                   controllers.UserController.update
-DELETE  /                                 controllers.UserController.delete(user_id: Option[Int])
+GET     /users                             controllers.api.UserController.index
+POST    /users                            controllers.api.UserController.store
+GET     /users/:user_id                    controllers.api.UserController.show(user_id: Int)
+PUT     /users                   controllers.api.UserController.update
+DELETE  /                                 controllers.api.UserController.delete(user_id: Option[Int])
 
 # Lift
-GET     /lift_type                       controllers.LiftTypeController.index
-POST    /lift_type                       controllers.LiftTypeController.store
-GET     /lift_type/:lift_type_id         controllers.LiftTypeController.show(lift_type_id: Int)
-PATCH    /lift_type/:lift_type_id         controllers.LiftTypeController.update(lift_type_id: Int)
-#DELETE  /lift_type/:lift_type_id         controllers.LiftTypeController.destroy(lift_type_id: Int)
+GET     /lift_types                       controllers.ListLiftTypeController.index
+POST    /lift_types                       controllers.api.LiftTypeController.store
+GET     /lift_types/:lift_type_id         controllers.api.LiftTypeController.show(lift_type_id: Int)
+PATCH    /lift_types/:lift_type_id         controllers.api.LiftTypeController.update(lift_type_id: Int)
+#DELETE  /lift_types/:lift_type_id         controllers.api.LiftTypeController.destroy(lift_type_id: Int)
 
 # BodyPart
-GET     /body_parts                       controllers.BodyPartController.index
-POST    /body_parts                       controllers.BodyPartController.store
-GET     /body_parts/:body_part_id         controllers.BodyPartController.show(body_part_id: Int)
-PUT    /body_parts/:body_part_id         controllers.BodyPartController.update(body_part_id: Int)
-#DELETE  /body_parts/:body_part_id         controllers.BodyPartController.destroy(body_part_id: Int)
+GET     /body_parts                       controllers.api.BodyPartController.index
+POST    /body_parts                       controllers.api.BodyPartController.store
+GET     /body_parts/:body_part_id         controllers.api.BodyPartController.show(body_part_id: Int)
+PUT    /body_parts/:body_part_id         controllers.api.BodyPartController.update(body_part_id: Int)
+#DELETE  /body_parts/:body_part_id         controllers.api.BodyPartController.destroy(body_part_id: Int)
 
 # Target
-GET     /targets                       controllers.TargetController.index
-POST    /targets                       controllers.TargetController.store
-GET     /targets/:target_id         controllers.TargetController.show(target_id: Int)
-PUT    /targets/:target_id         controllers.TargetController.update(target_id: Int)
-#DELETE  /targets/:target_id         controllers.TargetController.destroy(target_id: Int)
+GET     /targets                       controllers.api.TargetController.index
+POST    /targets                       controllers.api.TargetController.store
+GET     /targets/:target_id         controllers.api.TargetController.show(target_id: Int)
+PUT    /targets/:target_id         controllers.api.TargetController.update(target_id: Int)
+#DELETE  /targets/:target_id         controllers.api.TargetController.destroy(target_id: Int)
 
 # Category
-GET     /categories                             controllers.CategoryController.index
-GET     /categories/:category_id                  controllers.CategoryController.show(category_id: Int)
+GET     /categories                             controllers.api.CategoryController.index
+GET     /categories/:category_id                  controllers.api.CategoryController.show(category_id: Int)
 
 
 

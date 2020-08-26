@@ -13,7 +13,7 @@ class BodyPartRepository @Inject()(protected val dbConfigProvider: DatabaseConfi
 
   private val BodyParts = TableQuery[BodyPartsTable]
 
-  def all(): Future[Seq[BodyPart]] = db.run(BodyParts.result)
+  def index(): Future[Seq[BodyPart]] = db.run(BodyParts.result)
 
   def findById(id: Int): Future[BodyPart] = db.run(BodyParts.filter(_.id === id).result.head)
 

@@ -12,7 +12,7 @@ class CategoryRepository @Inject() (protected val dbConfigProvider: DatabaseConf
 
   private val Categories = TableQuery[CategoriesTable]
 
-  def all(): Future[Seq[Category]] = db.run(Categories.result)
+  def index(): Future[Seq[Category]] = db.run(Categories.result)
   def findById(id: Int): Future[Category] = db.run(Categories.filter(_.id === id).result.head)
 
   private class CategoriesTable(tag: Tag) extends Table[Category](tag, "categories") {

@@ -12,7 +12,7 @@ class UserRepository @Inject() (protected val dbConfigProvider: DatabaseConfigPr
 
   private val Users = TableQuery[UsersTable]
 
-  def all(): Future[Seq[User]] = db.run(Users.result)
+  def index(): Future[Seq[User]] = db.run(Users.result)
   def findById(id: Int): Future[User] = db.run(Users.filter(_.id === id).result.head)
   def insert(user: User): Future[Int] = db.run(Users += user)
   def update(user: User): Future[Int] = db.run(Users.filter(_.id === user.id).update(user))

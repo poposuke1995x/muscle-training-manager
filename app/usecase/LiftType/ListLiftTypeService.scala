@@ -1,8 +1,7 @@
 package usecase.LiftType
 
 import com.google.inject.{Inject, Singleton}
-import domain.LiftType
-import domain.repositories.LiftTypeRepositoryInterface
+import domain.{LiftType, LiftTypeRepositoryInterface}
 
 import scala.concurrent.Future
 

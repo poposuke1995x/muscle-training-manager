@@ -1,4 +1,1 @@
-[0m[[0m[33mwarn[0m] [0m[0m/root/muscle-training_manager/app/infrastructure/LiftTypeRepository.scala:60:7: multiarg infix syntax looks like a tuple and will be deprecated[0m
-[0m[[0m[33mwarn[0m] [0m[0m    ) <> (LiftType.tupled, LiftType.unapply)[0m
-[0m[[0m[33mwarn[0m] [0m[0m      ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[33mwarn[0m] [0m[0mAn exception occurred while looking for AutoValue extensions. No extensions will function. This may be due to a corrupt jar file in the compiler's classpath. Exception: java.util.ServiceConfigurationError: com.google.auto.value.extension.AutoValueExtension: Provider com.google.auto.value.extension.memoized.MemoizeExtension could not be instantiated[0m

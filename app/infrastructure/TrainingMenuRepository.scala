@@ -13,7 +13,7 @@ class TrainingMenuRepository @Inject()(protected val dbConfigProvider: DatabaseC
 
   private val TrainingMenus = TableQuery[TrainingMenusTable]
 
-  def all(): Future[Seq[TrainingMenu]] = db.run(TrainingMenus.result)
+  def index(): Future[Seq[TrainingMenu]] = db.run(TrainingMenus.result)
 
   def findById(id: Int): Future[TrainingMenu] = db.run(TrainingMenus.filter(_.id === id).result.head)
 
