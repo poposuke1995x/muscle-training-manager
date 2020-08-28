@@ -16,7 +16,7 @@ class CategoryController @Inject()
   implicit val formats: DefaultFormats.type = DefaultFormats
 
   def index: Action[AnyContent] = Action.async {
-    categoryRepository.all().map(categories =>
+    categoryRepository.index().map(categories =>
       Ok(Serialization.write(categories))
     )
   }

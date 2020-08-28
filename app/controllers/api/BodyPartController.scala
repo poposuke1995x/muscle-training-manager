@@ -18,7 +18,7 @@ class BodyPartController @Inject()
   implicit val formats: DefaultFormats.type = DefaultFormats
 
   def index: Action[AnyContent] = Action.async {
-    bodyPartRepository.all().map(bodyPart =>
+    bodyPartRepository.index().map(bodyPart =>
       Ok(Serialization.write(bodyPart))
     )
   }

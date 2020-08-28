@@ -17,7 +17,7 @@ class UserController @Inject()
   implicit val formats: DefaultFormats.type = DefaultFormats
 
   def index: Action[AnyContent] = Action.async {
-    userRepository.all().map(users =>
+    userRepository.index().map(users =>
       Ok(Serialization.write(users))
     )
   }
