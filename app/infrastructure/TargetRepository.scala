@@ -7,7 +7,8 @@ import slick.jdbc.JdbcProfile
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class TargetRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(implicit executionContext: ExecutionContext) extends HasDatabaseConfigProvider[JdbcProfile] {
+class TargetRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(implicit executionContext: ExecutionContext)
+  extends HasDatabaseConfigProvider[JdbcProfile] with TargetRepositoryInterface {
 
   import profile.api._
 
@@ -41,7 +42,6 @@ class TargetRepository @Inject()(protected val dbConfigProvider: DatabaseConfigP
     def isMain = column[Boolean]("is_main")
 
     def * = (id, liftActionId, bodyPartId, isMain) <> (Target.tupled, Target.unapply)
-
   }
 
 }

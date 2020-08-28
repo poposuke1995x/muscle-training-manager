@@ -7,7 +7,8 @@ import slick.jdbc.JdbcProfile
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class LiftTypeRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(implicit executionContext: ExecutionContext) extends HasDatabaseConfigProvider[JdbcProfile] with LiftTypeRepositoryInterface{
+class LiftTypeRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(implicit executionContext: ExecutionContext)
+  extends HasDatabaseConfigProvider[JdbcProfile] with LiftTypeRepositoryInterface {
 
   import profile.api._
 
@@ -57,7 +58,6 @@ class LiftTypeRepository @Inject()(protected val dbConfigProvider: DatabaseConfi
       defaultSetCount,
       shareFlag
     ) <> (LiftType.tupled, LiftType.unapply)
-
   }
 
 }

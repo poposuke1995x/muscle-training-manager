@@ -7,7 +7,8 @@ import slick.jdbc.JdbcProfile
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class LiftActionRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(implicit executionContext: ExecutionContext) extends HasDatabaseConfigProvider[JdbcProfile] {
+class LiftActionRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(implicit executionContext: ExecutionContext)
+  extends HasDatabaseConfigProvider[JdbcProfile] with LiftActionRepositoryInterface {
 
   import profile.api._
 
@@ -54,7 +55,6 @@ class LiftActionRepository @Inject()(protected val dbConfigProvider: DatabaseCon
       heavyWeight,
       heavySetCount,
     ) <> (LiftAction.tupled, LiftAction.unapply)
-
   }
 
 }
