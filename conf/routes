@@ -30,6 +30,9 @@ PUT    /targets/:target_id         controllers.api.TargetController.update(targe
 GET     /categories                             controllers.api.CategoryController.index
 GET     /categories/:category_id                  controllers.api.CategoryController.show(category_id: Int)
 
+GET     /training_menu                            controllers.ListTrainingMenuController.index
+POST    /training_menu                            controllers.CreateTrainingMenuController.store
+
 
 
 

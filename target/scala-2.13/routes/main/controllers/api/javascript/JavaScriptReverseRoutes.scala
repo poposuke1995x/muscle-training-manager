@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/root/muscle-training_manager/conf/routes
-// @DATE:Sat Aug 22 03:46:07 JST 2020
+// @DATE:Thu Sep 03 21:34:03 JST 2020
 
 import play.api.routing.JavaScriptReverseRoute
 

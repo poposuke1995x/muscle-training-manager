@@ -12,19 +12,19 @@ class TrainingMenuRepository @Inject()(protected val dbConfigProvider: DatabaseC
 
   import profile.api._
 
-  private val TrainingMenus = TableQuery[TrainingMenusTable]
+  private val TrainingMenuObj = TableQuery[TrainingMenuTable]
 
-  def index(): Future[Seq[TrainingMenu]] = db.run(TrainingMenus.result)
+  def index(): Future[Seq[TrainingMenu]] = db.run(TrainingMenuObj.result)
 
-  def findById(id: Int): Future[TrainingMenu] = db.run(TrainingMenus.filter(_.id === id).result.head)
+  def findById(id: Int): Future[TrainingMenu] = db.run(TrainingMenuObj.filter(_.id === id).result.head)
 
-  def insert(trainingMenu: TrainingMenu): Future[Int] = db.run(TrainingMenus += trainingMenu)
+  def insert(trainingMenu: TrainingMenu): Future[Int] = db.run(TrainingMenuObj += trainingMenu)
 
-  def update(trainingMenu: TrainingMenu): Future[Int] = db.run(TrainingMenus.filter(_.id === trainingMenu.id).update(trainingMenu))
+  def update(trainingMenu: TrainingMenu): Future[Int] = db.run(TrainingMenuObj.filter(_.id === trainingMenu.id).update(trainingMenu))
 
-  def delete(id: Int): Future[Int] = db.run(TrainingMenus.filter(_.id === id).delete)
+  def delete(id: Int): Future[Int] = db.run(TrainingMenuObj.filter(_.id === id).delete)
 
-  private class TrainingMenusTable(tag: Tag) extends Table[TrainingMenu](tag, "lift_types") {
+  private class TrainingMenuTable(tag: Tag) extends Table[TrainingMenu](tag, "training_menu") {
 
     def id = column[Option[Int]]("id", O.PrimaryKey, O.AutoInc)
 
