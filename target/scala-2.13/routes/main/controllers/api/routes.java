@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/root/muscle-training_manager/conf/routes
-// @DATE:Thu Sep 03 21:34:03 JST 2020
+// @DATE:Thu Sep 10 20:22:00 JST 2020
 
 package controllers.api;
 
