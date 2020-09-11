@@ -34,6 +34,7 @@ GET     /training_menu                            controllers.ListTrainingMenuCo
 POST    /training_menu                            controllers.CreateTrainingMenuController.store
 POST    /lift_types                            controllers.CreateLiftTypeController.store
 DELETE  /lift_types/:lift_type_id              controllers.DeleteLiftTypeController.delete(lift_type_id: Int)
+DELETE  /training_menu/:training_menu_id        controllers.DeleteTrainingMenuController.delete(training_menu_id: Int)
 
 
 

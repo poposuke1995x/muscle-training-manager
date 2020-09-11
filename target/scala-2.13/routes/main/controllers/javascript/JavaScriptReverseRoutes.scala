@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/root/muscle-training_manager/conf/routes
-// @DATE:Fri Sep 11 23:09:43 JST 2020
+// @DATE:Sat Sep 12 00:36:52 JST 2020
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -10,7 +10,7 @@ import _root_.controllers.Assets.Asset
 // @LINE:9
 package controllers.javascript {
 
-  // @LINE:70
+  // @LINE:71
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -18,12 +18,32 @@ package controllers.javascript {
     }
 
   
-    // @LINE:70
+    // @LINE:71
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
         function(file1) {
           return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "assets/" + (""" + implicitly[play.api.mvc.PathBindable[Asset]].javascriptUnbind + """)("file", file1)})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:37
+  class ReverseDeleteTrainingMenuController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:37
+    def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.DeleteTrainingMenuController.delete",
+      """
+        function(training_menu_id0) {
+          return _wA({method:"DELETE", url:"""" + _prefix + { _defaultPrefix } + """" + "training_menu/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("training_menu_id", training_menu_id0))})
         }
       """
     )
