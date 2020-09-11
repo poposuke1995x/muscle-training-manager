@@ -35,7 +35,7 @@ POST    /training_menu                            controllers.CreateTrainingMenu
 POST    /lift_types                            controllers.CreateLiftTypeController.store
 DELETE  /lift_types/:lift_type_id              controllers.DeleteLiftTypeController.delete(lift_type_id: Int)
 DELETE  /training_menu/:training_menu_id        controllers.DeleteTrainingMenuController.delete(training_menu_id: Int)
-
+GET     /training_menu/:training_menu_id/pub  controllers.PublishTrainingMenuController.publish(training_menu_id: Int)
 
 
 

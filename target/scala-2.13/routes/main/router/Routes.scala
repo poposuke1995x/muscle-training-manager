@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/root/muscle-training_manager/conf/routes
-// @DATE:Sat Sep 12 00:36:52 JST 2020
+// @DATE:Sat Sep 12 01:21:18 JST 2020
 
 package router
 
@@ -35,8 +35,10 @@ class Routes(
   DeleteLiftTypeController_5: controllers.DeleteLiftTypeController,
   // @LINE:37
   DeleteTrainingMenuController_4: controllers.DeleteTrainingMenuController,
+  // @LINE:38
+  PublishTrainingMenuController_11: controllers.PublishTrainingMenuController,
   // @LINE:71
-  Assets_11: controllers.Assets,
+  Assets_12: controllers.Assets,
   val prefix: String
 ) extends GeneratedRouter {
 
@@ -64,14 +66,16 @@ class Routes(
     DeleteLiftTypeController_5: controllers.DeleteLiftTypeController,
     // @LINE:37
     DeleteTrainingMenuController_4: controllers.DeleteTrainingMenuController,
+    // @LINE:38
+    PublishTrainingMenuController_11: controllers.PublishTrainingMenuController,
     // @LINE:71
-    Assets_11: controllers.Assets
-  ) = this(errorHandler, UserController_10, ListLiftTypeController_2, LiftTypeController_1, BodyPartController_3, TargetController_6, CategoryController_9, ListTrainingMenuController_0, CreateTrainingMenuController_8, CreateLiftTypeController_7, DeleteLiftTypeController_5, DeleteTrainingMenuController_4, Assets_11, "/")
+    Assets_12: controllers.Assets
+  ) = this(errorHandler, UserController_10, ListLiftTypeController_2, LiftTypeController_1, BodyPartController_3, TargetController_6, CategoryController_9, ListTrainingMenuController_0, CreateTrainingMenuController_8, CreateLiftTypeController_7, DeleteLiftTypeController_5, DeleteTrainingMenuController_4, PublishTrainingMenuController_11, Assets_12, "/")
 
   def withPrefix(addPrefix: String): Routes = {
     val prefix = play.api.routing.Router.concatPrefix(addPrefix, this.prefix)
     router.RoutesPrefix.setPrefix(prefix)
-    new Routes(errorHandler, UserController_10, ListLiftTypeController_2, LiftTypeController_1, BodyPartController_3, TargetController_6, CategoryController_9, ListTrainingMenuController_0, CreateTrainingMenuController_8, CreateLiftTypeController_7, DeleteLiftTypeController_5, DeleteTrainingMenuController_4, Assets_11, prefix)
+    new Routes(errorHandler, UserController_10, ListLiftTypeController_2, LiftTypeController_1, BodyPartController_3, TargetController_6, CategoryController_9, ListTrainingMenuController_0, CreateTrainingMenuController_8, CreateLiftTypeController_7, DeleteLiftTypeController_5, DeleteTrainingMenuController_4, PublishTrainingMenuController_11, Assets_12, prefix)
   }
 
   private[this] val defaultPrefix: String = {
@@ -103,6 +107,7 @@ class Routes(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """lift_types""", """controllers.CreateLiftTypeController.store"""),
     ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """lift_types/""" + "$" + """lift_type_id<[^/]+>""", """controllers.DeleteLiftTypeController.delete(lift_type_id:Int)"""),
     ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """training_menu/""" + "$" + """training_menu_id<[^/]+>""", """controllers.DeleteTrainingMenuController.delete(training_menu_id:Int)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """training_menu/""" + "$" + """training_menu_id<[^/]+>/pub""", """controllers.PublishTrainingMenuController.publish(training_menu_id:Int)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -543,12 +548,30 @@ class Routes(
     )
   )
 
+  // @LINE:38
+  private[this] lazy val controllers_PublishTrainingMenuController_publish24_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("training_menu/"), DynamicPart("training_menu_id", """[^/]+""",true), StaticPart("/pub")))
+  )
+  private[this] lazy val controllers_PublishTrainingMenuController_publish24_invoker = createInvoker(
+    PublishTrainingMenuController_11.publish(fakeValue[Int]),
+    play.api.routing.HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.PublishTrainingMenuController",
+      "publish",
+      Seq(classOf[Int]),
+      "GET",
+      this.prefix + """training_menu/""" + "$" + """training_menu_id<[^/]+>/pub""",
+      """""",
+      Seq()
+    )
+  )
+
   // @LINE:71
-  private[this] lazy val controllers_Assets_versioned24_route = Route("GET",
+  private[this] lazy val controllers_Assets_versioned25_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("assets/"), DynamicPart("file", """.+""",false)))
   )
-  private[this] lazy val controllers_Assets_versioned24_invoker = createInvoker(
-    Assets_11.versioned(fakeValue[String], fakeValue[Asset]),
+  private[this] lazy val controllers_Assets_versioned25_invoker = createInvoker(
+    Assets_12.versioned(fakeValue[String], fakeValue[Asset]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.Assets",
@@ -708,10 +731,16 @@ class Routes(
         controllers_DeleteTrainingMenuController_delete23_invoker.call(DeleteTrainingMenuController_4.delete(training_menu_id))
       }
   
+    // @LINE:38
+    case controllers_PublishTrainingMenuController_publish24_route(params@_) =>
+      call(params.fromPath[Int]("training_menu_id", None)) { (training_menu_id) =>
+        controllers_PublishTrainingMenuController_publish24_invoker.call(PublishTrainingMenuController_11.publish(training_menu_id))
+      }
+  
     // @LINE:71
-    case controllers_Assets_versioned24_route(params@_) =>
+    case controllers_Assets_versioned25_route(params@_) =>
       call(Param[String]("path", Right("/public")), params.fromPath[Asset]("file", None)) { (path, file) =>
-        controllers_Assets_versioned24_invoker.call(Assets_11.versioned(path, file))
+        controllers_Assets_versioned25_invoker.call(Assets_12.versioned(path, file))
       }
   }
 }

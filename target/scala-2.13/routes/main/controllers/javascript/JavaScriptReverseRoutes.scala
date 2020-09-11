@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/root/muscle-training_manager/conf/routes
-// @DATE:Sat Sep 12 00:36:52 JST 2020
+// @DATE:Sat Sep 12 01:21:18 JST 2020
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -124,6 +124,26 @@ package controllers.javascript {
       """
         function(lift_type_id0) {
           return _wA({method:"DELETE", url:"""" + _prefix + { _defaultPrefix } + """" + "lift_types/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("lift_type_id", lift_type_id0))})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:38
+  class ReversePublishTrainingMenuController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:38
+    def publish: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.PublishTrainingMenuController.publish",
+      """
+        function(training_menu_id0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "training_menu/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("training_menu_id", training_menu_id0)) + "/pub"})
         }
       """
     )
