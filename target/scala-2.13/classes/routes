@@ -33,6 +33,7 @@ GET     /categories/:category_id                  controllers.api.CategoryContro
 GET     /training_menu                            controllers.ListTrainingMenuController.index
 POST    /training_menu                            controllers.CreateTrainingMenuController.store
 POST    /lift_types                            controllers.CreateLiftTypeController.store
+DELETE  /lift_types/:lift_type_id              controllers.DeleteLiftTypeController.delete(lift_type_id: Int)
 
 
 
