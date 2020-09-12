@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/root/muscle-training_manager/conf/routes
-// @DATE:Sat Sep 12 23:45:29 JST 2020
+// @DATE:Sun Sep 13 00:08:18 JST 2020
 
 import play.api.mvc.Call
 

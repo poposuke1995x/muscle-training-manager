@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/root/muscle-training_manager/conf/routes
-// @DATE:Sat Sep 12 23:45:29 JST 2020
+// @DATE:Sun Sep 13 00:08:18 JST 2020
 
 package router
 
@@ -14,7 +14,7 @@ import _root_.controllers.Assets.Asset
 class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
   // @LINE:2
-  UserController_8: controllers.api.UserController,
+  UserController_9: controllers.api.UserController,
   // @LINE:16
   BodyPartController_1: controllers.api.BodyPartController,
   // @LINE:23
@@ -32,7 +32,7 @@ class Routes(
   // @LINE:37
   DeleteTrainingMenuController_2: controllers.DeleteTrainingMenuController,
   // @LINE:38
-  PublishTrainingMenuController_9: controllers.PublishTrainingMenuController,
+  ShareLiftTypeController_8: controllers.ShareLiftTypeController,
   // @LINE:71
   Assets_10: controllers.Assets,
   val prefix: String
@@ -41,7 +41,7 @@ class Routes(
    @javax.inject.Inject()
    def this(errorHandler: play.api.http.HttpErrorHandler,
     // @LINE:2
-    UserController_8: controllers.api.UserController,
+    UserController_9: controllers.api.UserController,
     // @LINE:16
     BodyPartController_1: controllers.api.BodyPartController,
     // @LINE:23
@@ -59,15 +59,15 @@ class Routes(
     // @LINE:37
     DeleteTrainingMenuController_2: controllers.DeleteTrainingMenuController,
     // @LINE:38
-    PublishTrainingMenuController_9: controllers.PublishTrainingMenuController,
+    ShareLiftTypeController_8: controllers.ShareLiftTypeController,
     // @LINE:71
     Assets_10: controllers.Assets
-  ) = this(errorHandler, UserController_8, BodyPartController_1, TargetController_4, CategoryController_7, ListTrainingMenuController_0, CreateTrainingMenuController_6, CreateLiftTypeController_5, DeleteLiftTypeController_3, DeleteTrainingMenuController_2, PublishTrainingMenuController_9, Assets_10, "/")
+  ) = this(errorHandler, UserController_9, BodyPartController_1, TargetController_4, CategoryController_7, ListTrainingMenuController_0, CreateTrainingMenuController_6, CreateLiftTypeController_5, DeleteLiftTypeController_3, DeleteTrainingMenuController_2, ShareLiftTypeController_8, Assets_10, "/")
 
   def withPrefix(addPrefix: String): Routes = {
     val prefix = play.api.routing.Router.concatPrefix(addPrefix, this.prefix)
     router.RoutesPrefix.setPrefix(prefix)
-    new Routes(errorHandler, UserController_8, BodyPartController_1, TargetController_4, CategoryController_7, ListTrainingMenuController_0, CreateTrainingMenuController_6, CreateLiftTypeController_5, DeleteLiftTypeController_3, DeleteTrainingMenuController_2, PublishTrainingMenuController_9, Assets_10, prefix)
+    new Routes(errorHandler, UserController_9, BodyPartController_1, TargetController_4, CategoryController_7, ListTrainingMenuController_0, CreateTrainingMenuController_6, CreateLiftTypeController_5, DeleteLiftTypeController_3, DeleteTrainingMenuController_2, ShareLiftTypeController_8, Assets_10, prefix)
   }
 
   private[this] val defaultPrefix: String = {
@@ -95,7 +95,7 @@ class Routes(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """lift_types""", """controllers.CreateLiftTypeController.store"""),
     ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """lift_types/""" + "$" + """lift_type_id<[^/]+>""", """controllers.DeleteLiftTypeController.delete(lift_type_id:Int)"""),
     ("""DELETE""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """training_menu/""" + "$" + """training_menu_id<[^/]+>""", """controllers.DeleteTrainingMenuController.delete(training_menu_id:Int)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """training_menu/""" + "$" + """training_menu_id<[^/]+>/pub""", """controllers.PublishTrainingMenuController.publish(training_menu_id:Int)"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """lift_types/""" + "$" + """lift_type_id<[^/]+>/share""", """controllers.ShareLiftTypeController.share(lift_type_id:Int)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """assets/""" + "$" + """file<.+>""", """controllers.Assets.versioned(path:String = "/public", file:Asset)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -109,7 +109,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("users")))
   )
   private[this] lazy val controllers_api_UserController_index0_invoker = createInvoker(
-    UserController_8.index,
+    UserController_9.index,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.api.UserController",
@@ -127,7 +127,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("users")))
   )
   private[this] lazy val controllers_api_UserController_store1_invoker = createInvoker(
-    UserController_8.store,
+    UserController_9.store,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.api.UserController",
@@ -145,7 +145,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("users/"), DynamicPart("user_id", """[^/]+""",true)))
   )
   private[this] lazy val controllers_api_UserController_show2_invoker = createInvoker(
-    UserController_8.show(fakeValue[Int]),
+    UserController_9.show(fakeValue[Int]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.api.UserController",
@@ -163,7 +163,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("users")))
   )
   private[this] lazy val controllers_api_UserController_update3_invoker = createInvoker(
-    UserController_8.update,
+    UserController_9.update,
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.api.UserController",
@@ -181,7 +181,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix)))
   )
   private[this] lazy val controllers_api_UserController_delete4_invoker = createInvoker(
-    UserController_8.delete(fakeValue[Option[Int]]),
+    UserController_9.delete(fakeValue[Option[Int]]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.api.UserController",
@@ -465,18 +465,18 @@ class Routes(
   )
 
   // @LINE:38
-  private[this] lazy val controllers_PublishTrainingMenuController_publish20_route = Route("GET",
-    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("training_menu/"), DynamicPart("training_menu_id", """[^/]+""",true), StaticPart("/pub")))
+  private[this] lazy val controllers_ShareLiftTypeController_share20_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("lift_types/"), DynamicPart("lift_type_id", """[^/]+""",true), StaticPart("/share")))
   )
-  private[this] lazy val controllers_PublishTrainingMenuController_publish20_invoker = createInvoker(
-    PublishTrainingMenuController_9.publish(fakeValue[Int]),
+  private[this] lazy val controllers_ShareLiftTypeController_share20_invoker = createInvoker(
+    ShareLiftTypeController_8.share(fakeValue[Int]),
     play.api.routing.HandlerDef(this.getClass.getClassLoader,
       "router",
-      "controllers.PublishTrainingMenuController",
-      "publish",
+      "controllers.ShareLiftTypeController",
+      "share",
       Seq(classOf[Int]),
       "GET",
-      this.prefix + """training_menu/""" + "$" + """training_menu_id<[^/]+>/pub""",
+      this.prefix + """lift_types/""" + "$" + """lift_type_id<[^/]+>/share""",
       """""",
       Seq()
     )
@@ -506,31 +506,31 @@ class Routes(
     // @LINE:2
     case controllers_api_UserController_index0_route(params@_) =>
       call { 
-        controllers_api_UserController_index0_invoker.call(UserController_8.index)
+        controllers_api_UserController_index0_invoker.call(UserController_9.index)
       }
   
     // @LINE:3
     case controllers_api_UserController_store1_route(params@_) =>
       call { 
-        controllers_api_UserController_store1_invoker.call(UserController_8.store)
+        controllers_api_UserController_store1_invoker.call(UserController_9.store)
       }
   
     // @LINE:4
     case controllers_api_UserController_show2_route(params@_) =>
       call(params.fromPath[Int]("user_id", None)) { (user_id) =>
-        controllers_api_UserController_show2_invoker.call(UserController_8.show(user_id))
+        controllers_api_UserController_show2_invoker.call(UserController_9.show(user_id))
       }
   
     // @LINE:5
     case controllers_api_UserController_update3_route(params@_) =>
       call { 
-        controllers_api_UserController_update3_invoker.call(UserController_8.update)
+        controllers_api_UserController_update3_invoker.call(UserController_9.update)
       }
   
     // @LINE:6
     case controllers_api_UserController_delete4_route(params@_) =>
       call(params.fromQuery[Option[Int]]("user_id", None)) { (user_id) =>
-        controllers_api_UserController_delete4_invoker.call(UserController_8.delete(user_id))
+        controllers_api_UserController_delete4_invoker.call(UserController_9.delete(user_id))
       }
   
     // @LINE:16
@@ -624,9 +624,9 @@ class Routes(
       }
   
     // @LINE:38
-    case controllers_PublishTrainingMenuController_publish20_route(params@_) =>
-      call(params.fromPath[Int]("training_menu_id", None)) { (training_menu_id) =>
-        controllers_PublishTrainingMenuController_publish20_invoker.call(PublishTrainingMenuController_9.publish(training_menu_id))
+    case controllers_ShareLiftTypeController_share20_route(params@_) =>
+      call(params.fromPath[Int]("lift_type_id", None)) { (lift_type_id) =>
+        controllers_ShareLiftTypeController_share20_invoker.call(ShareLiftTypeController_8.share(lift_type_id))
       }
   
     // @LINE:71
