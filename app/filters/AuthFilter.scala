@@ -44,11 +44,10 @@ class AuthFilter @Inject() (config: Configuration)(implicit executionContext: Ex
         case _: Any => None
       }
 
-    val uid: String = decodedToken match {
+    decodedToken match {
       case Some(dToken) => dToken.getUid
       case None => ""
     }
-    uid
   }
 //FixMe: デプロイ前に修正
 //  def checkAuth(uid: String): Boolean = uid.nonEmpty

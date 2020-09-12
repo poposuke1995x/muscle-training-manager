@@ -75,7 +75,7 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
 
     def importedCount = column[Int]("imported_count")
 
-    def serverUid = column[String]("server_uid")
+    def userId = column[Int]("user_id")
 
     def defaultRep = column[Int]("default_rep")
 
@@ -91,7 +91,7 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
       referenceUrl,
       description,
       importedCount,
-      serverUid,
+      userId,
       defaultRep,
       defaultWeight,
       defaultSetCount,
@@ -124,7 +124,7 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
 
     def importedCount = column[Int]("imported_count")
 
-    def userUid = column[String]("user_uid")
+    def userId = column[Int]("user_id")
 
     def shareFlag = column[Boolean]("share_flag")
 
@@ -134,7 +134,7 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
       categoryId,
       description,
       importedCount,
-      userUid,
+      userId,
       shareFlag
     ) <> (TrainingMenu.tupled, TrainingMenu.unapply)
 

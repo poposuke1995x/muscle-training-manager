@@ -6,10 +6,10 @@ PUT     /users                   controllers.api.UserController.update
 DELETE  /                                 controllers.api.UserController.delete(user_id: Option[Int])
 
 # Lift
-GET     /lift_types                       controllers.ListLiftTypeController.index
-POST    /lift_types                       controllers.api.LiftTypeController.store
-GET     /lift_types/:lift_type_id         controllers.api.LiftTypeController.show(lift_type_id: Int)
-PATCH    /lift_types/:lift_type_id         controllers.api.LiftTypeController.update(lift_type_id: Int)
+#GET     /lift_types                       controllers.ListLiftTypeController.index
+#POST    /lift_types                       controllers.api.LiftTypeController.store
+#GET     /lift_types/:lift_type_id         controllers.api.LiftTypeController.show(lift_type_id: Int)
+#PATCH    /lift_types/:lift_type_id         controllers.api.LiftTypeController.update(lift_type_id: Int)
 #DELETE  /lift_types/:lift_type_id         controllers.api.LiftTypeController.destroy(lift_type_id: Int)
 
 # BodyPart

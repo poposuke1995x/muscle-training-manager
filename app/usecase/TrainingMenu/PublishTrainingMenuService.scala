@@ -17,7 +17,7 @@ case class PublishTrainingMenuService @Inject()(repository: TrainingMenuReposito
       categoryId = obj.categoryId,
       description = obj.description,
       importedCount = obj.importedCount,
-      userUid = obj.userUid,
+      userId = obj.userId,
       shareFlag = true
     )
   }

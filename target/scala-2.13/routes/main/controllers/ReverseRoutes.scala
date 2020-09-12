@@ -1,13 +1,13 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/root/muscle-training_manager/conf/routes
-// @DATE:Sat Sep 12 01:21:18 JST 2020
+// @DATE:Sat Sep 12 23:45:29 JST 2020
 
 import play.api.mvc.Call
 
 
 import _root_.controllers.Assets.Asset
 
-// @LINE:9
+// @LINE:33
 package controllers {
 
   // @LINE:71
@@ -36,21 +36,6 @@ package controllers {
     def delete(training_menu_id:Int): Call = {
       
       Call("DELETE", _prefix + { _defaultPrefix } + "training_menu/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Int]].unbind("training_menu_id", training_menu_id)))
-    }
-  
-  }
-
-  // @LINE:9
-  class ReverseListLiftTypeController(_prefix: => String) {
-    def _defaultPrefix: String = {
-      if (_prefix.endsWith("/")) "" else "/"
-    }
-
-  
-    // @LINE:9
-    def index(): Call = {
-      
-      Call("GET", _prefix + { _defaultPrefix } + "lift_types")
     }
   
   }

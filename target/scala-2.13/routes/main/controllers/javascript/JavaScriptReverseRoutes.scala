@@ -1,13 +1,13 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/root/muscle-training_manager/conf/routes
-// @DATE:Sat Sep 12 01:21:18 JST 2020
+// @DATE:Sat Sep 12 23:45:29 JST 2020
 
 import play.api.routing.JavaScriptReverseRoute
 
 
 import _root_.controllers.Assets.Asset
 
-// @LINE:9
+// @LINE:33
 package controllers.javascript {
 
   // @LINE:71
@@ -44,26 +44,6 @@ package controllers.javascript {
       """
         function(training_menu_id0) {
           return _wA({method:"DELETE", url:"""" + _prefix + { _defaultPrefix } + """" + "training_menu/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("training_menu_id", training_menu_id0))})
-        }
-      """
-    )
-  
-  }
-
-  // @LINE:9
-  class ReverseListLiftTypeController(_prefix: => String) {
-
-    def _defaultPrefix: String = {
-      if (_prefix.endsWith("/")) "" else "/"
-    }
-
-  
-    // @LINE:9
-    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
-      "controllers.ListLiftTypeController.index",
-      """
-        function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "lift_types"})
         }
       """
     )

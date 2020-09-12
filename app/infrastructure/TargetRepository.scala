@@ -23,9 +23,7 @@ class TargetRepository @Inject()(protected val dbConfigProvider: DatabaseConfigP
   def updateIsMain(id: Int, isMain: Boolean): Future[Int] = db.run(
     Targets
       .filter(_.id === id)
-      .map {
-        _.isMain
-      }
+      .map(_.isMain)
       .update(isMain)
   )
 
