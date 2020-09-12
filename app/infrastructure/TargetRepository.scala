@@ -7,12 +7,12 @@ import slick.jdbc.JdbcProfile
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class TargetRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(implicit executionContext: ExecutionContext)
+class TargetRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, models: Models)(implicit executionContext: ExecutionContext)
   extends HasDatabaseConfigProvider[JdbcProfile] with TargetRepositoryInterface {
 
   import profile.api._
 
-  private val Targets = TableQuery[TargetsTable]
+  private val Targets = TableQuery[models.TargetsTable]
 
   def index(): Future[Seq[Target]] = db.run(Targets.result)
 
@@ -31,17 +31,5 @@ class TargetRepository @Inject()(protected val dbConfigProvider: DatabaseConfigP
 
   def delete(id: Int): Future[Int] = db.run(Targets.filter(_.id === id).delete)
 
-  private class TargetsTable(tag: Tag) extends Table[Target](tag, "targets") {
-
-    def id = column[Option[Int]]("id", O.PrimaryKey, O.AutoInc)
-
-    def liftActionId = column[Int]("lift_action_id")
-
-    def bodyPartId = column[Int]("body_part_id")
-
-    def isMain = column[Boolean]("is_main")
-
-    def * = (id, liftActionId, bodyPartId, isMain) <> (Target.tupled, Target.unapply)
-  }
 
 }

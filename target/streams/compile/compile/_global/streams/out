@@ -1,6 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0m/root/muscle-training_manager/app/usecase/TrainingMenu/PublishTrainingMenuService.scala:11:29: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Unit[0m
-[0m[[0m[31merror[0m] [0m[0m required: Int[0m
-[0m[[0m[31merror[0m] [0m[0m    repository.findById(id) onComplete {[0m
-[0m[[0m[31merror[0m] [0m[0m                            ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[33mwarn[0m] [0m[0m/root/muscle-training_manager/app/infrastructure/BodyPartRepository.scala:35:24: multiarg infix syntax looks like a tuple and will be deprecated[0m
+[0m[[0m[33mwarn[0m] [0m[0m    def * = (id, name) <> (BodyPart.tupled, BodyPart.unapply)[0m
+[0m[[0m[33mwarn[0m] [0m[0m                       ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m

@@ -7,12 +7,12 @@ import play.api.db.slick.DatabaseConfigProvider
 import play.api.db.slick.HasDatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
-class UserRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(implicit executionContext: ExecutionContext)
+class UserRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, models: Models)(implicit executionContext: ExecutionContext)
   extends HasDatabaseConfigProvider[JdbcProfile] with UserRepositoryInterface {
 
   import profile.api._
 
-  private val Users = TableQuery[UsersTable]
+  private val Users = TableQuery[models.UsersTable]
 
   def index(): Future[Seq[User]] = db.run(Users.result)
 
@@ -24,15 +24,5 @@ class UserRepository @Inject()(protected val dbConfigProvider: DatabaseConfigPro
 
   def delete(id: Int): Future[Int] = db.run(Users.filter(_.id === id).delete)
 
-  private class UsersTable(tag: Tag) extends Table[User](tag, "users") {
-
-    def id = column[Option[Int]]("id", O.PrimaryKey, O.AutoInc)
-
-    def name = column[String]("name")
-
-    def firebase_uid = column[String]("firebase_uid")
-
-    def * = (id, name, firebase_uid) <> (User.tupled, User.unapply)
-  }
 
 }
