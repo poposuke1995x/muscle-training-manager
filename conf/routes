@@ -36,6 +36,7 @@ POST    /lift_types                            controllers.CreateLiftTypeControl
 DELETE  /lift_types/:lift_type_id              controllers.DeleteLiftTypeController.delete(lift_type_id: Int)
 DELETE  /training_menu/:training_menu_id        controllers.DeleteTrainingMenuController.delete(training_menu_id: Int)
 GET     /lift_types/:lift_type_id/share  controllers.ShareLiftTypeController.share(lift_type_id: Int)
+POST    /training_menu/lift_types        controllers.RegisterLiftTypesToTrainingMenuController.registerLiftTypesToTrainingMenu
 
 
 

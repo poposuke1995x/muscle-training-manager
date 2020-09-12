@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/root/muscle-training_manager/conf/routes
-// @DATE:Sun Sep 13 00:08:18 JST 2020
+// @DATE:Sun Sep 13 01:58:58 JST 2020
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -10,7 +10,7 @@ import _root_.controllers.Assets.Asset
 // @LINE:33
 package controllers.javascript {
 
-  // @LINE:71
+  // @LINE:72
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -18,7 +18,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:71
+    // @LINE:72
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
@@ -44,6 +44,26 @@ package controllers.javascript {
       """
         function(lift_type_id0) {
           return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "lift_types/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("lift_type_id", lift_type_id0)) + "/share"})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:39
+  class ReverseRegisterLiftTypesToTrainingMenuController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:39
+    def registerLiftTypesToTrainingMenu: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.RegisterLiftTypesToTrainingMenuController.registerLiftTypesToTrainingMenu",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "training_menu/lift_types"})
         }
       """
     )

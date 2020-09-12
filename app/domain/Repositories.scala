@@ -1,6 +1,7 @@
 package domain
 
 import scala.concurrent.Future
+import dto._
 
 
 trait BodyPartRepositoryInterface {
@@ -74,4 +75,8 @@ trait UserRepositoryInterface {
   def insert(user: User): Future[Int]
   def update(user: User): Future[Int]
   def delete(id: Int): Future[Int]
+}
+
+trait RegisterLiftTypesToTrainingMenuRepositoryInterface {
+  def execute(req: RegisterLiftTypesToTrainingMenuRequest): List[Future[Int]]
 }

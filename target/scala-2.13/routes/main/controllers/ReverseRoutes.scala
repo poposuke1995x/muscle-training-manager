@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/root/muscle-training_manager/conf/routes
-// @DATE:Sun Sep 13 00:08:18 JST 2020
+// @DATE:Sun Sep 13 01:58:58 JST 2020
 
 import play.api.mvc.Call
 
@@ -10,14 +10,14 @@ import _root_.controllers.Assets.Asset
 // @LINE:33
 package controllers {
 
-  // @LINE:71
+  // @LINE:72
   class ReverseAssets(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:71
+    // @LINE:72
     def versioned(file:Asset): Call = {
       implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public"))); _rrc
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[Asset]].unbind("file", file))
@@ -36,6 +36,21 @@ package controllers {
     def share(lift_type_id:Int): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "lift_types/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Int]].unbind("lift_type_id", lift_type_id)) + "/share")
+    }
+  
+  }
+
+  // @LINE:39
+  class ReverseRegisterLiftTypesToTrainingMenuController(_prefix: => String) {
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:39
+    def registerLiftTypesToTrainingMenu(): Call = {
+      
+      Call("POST", _prefix + { _defaultPrefix } + "training_menu/lift_types")
     }
   
   }
