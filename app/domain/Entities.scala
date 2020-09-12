@@ -26,7 +26,6 @@ case class TrainingMenu(
                          name: String,
                          categoryId: Int,
                          description: Option[String],
-                         importedCount: Int = 0,
                          userId: Int,
                          shareFlag: Boolean = false
                        )

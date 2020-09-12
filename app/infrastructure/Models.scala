@@ -122,8 +122,6 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
 
     def description = column[Option[String]]("description")
 
-    def importedCount = column[Int]("imported_count")
-
     def userId = column[Int]("user_id")
 
     def shareFlag = column[Boolean]("share_flag")
@@ -133,7 +131,6 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
       name,
       categoryId,
       description,
-      importedCount,
       userId,
       shareFlag
     ) <> (TrainingMenu.tupled, TrainingMenu.unapply)
