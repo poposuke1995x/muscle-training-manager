@@ -40,11 +40,3 @@ class RegisterLiftTypesToTrainingMenuRepository @Inject()(protected val dbConfig
     }
   }
 }
-
-
-//result <- Targets += Target(
-//id = Some(0),
-//liftActionId = liftActionId,
-//bodyPartId = liftType.targetBodyPartId,
-//isMain = liftType.isMain
-//)
