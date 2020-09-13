@@ -13,6 +13,6 @@ case class TargetedLiftTypeRequest(
                                     heavyRep: Int = 0,
                                     heavyWeight: Int = 0,
                                     heavySetCount: Int = 0,
-                                    targetBodyPartId: Int,
-                                    isMain: Boolean = false
+                                    targetBodyPartIds: List[Int],
+                                    isMain: Int
                                   )
