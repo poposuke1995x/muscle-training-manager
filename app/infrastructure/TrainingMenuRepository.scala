@@ -14,7 +14,7 @@ class TrainingMenuRepository @Inject()(protected val dbConfigProvider: DatabaseC
 
   private val TrainingMenuObj = TableQuery[models.TrainingMenuTable]
 
-  def index(): Future[Seq[TrainingMenu]] = db.run(TrainingMenuObj.result)
+  def index(): Future[Seq[TrainingMenu]] = db.run(TrainingMenuObj.filter(_.shareFlag).result)
 
   def findById(id: Int): Future[TrainingMenu] = db.run(TrainingMenuObj.filter(_.id === id).result.head)
 
