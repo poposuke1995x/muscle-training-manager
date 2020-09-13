@@ -30,11 +30,11 @@ class RegisterLiftTypesToTrainingMenuRepository @Inject()(protected val dbConfig
           heavyWeight = liftType.heavyWeight,
           heavySetCount = liftType.heavySetCount
         )
-        _ <- DBIO.seq(liftType.targetBodyPartIds.map(id => Targets += Target(
+        _ <- DBIO.seq(liftType.targetBodyPartIds.map(bodyPartId => Targets += Target(
           id = Some(0),
           liftActionId = liftActionId,
-          bodyPartId = id,
-          isMain = liftType.isMain== id
+          bodyPartId = bodyPartId,
+          isMain = liftType.isMain== bodyPartId
         )): _*)
       } yield 1).transactionally)
     }
