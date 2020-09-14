@@ -18,6 +18,8 @@ class TrainingMenuRepository @Inject()(protected val dbConfigProvider: DatabaseC
 
   def findById(id: Int): Future[TrainingMenu] = db.run(TrainingMenuObj.filter(_.id === id).result.head)
 
+  def findByUserId(userId: Int): Future[Seq[TrainingMenu]] = db.run(TrainingMenuObj.filter(_.userId === userId).result)
+
   def insert(trainingMenu: TrainingMenu): Future[Int] = db.run((TrainingMenuObj returning TrainingMenuObj.map(_.id.get)) += trainingMenu)
 
   def update(trainingMenu: TrainingMenu): Future[Int] = db.run(TrainingMenuObj.filter(_.id === trainingMenu.id).update(trainingMenu))

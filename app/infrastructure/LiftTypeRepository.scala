@@ -18,6 +18,8 @@ class LiftTypeRepository @Inject()(protected val dbConfigProvider: DatabaseConfi
 
   def findById(id: Int): Future[LiftType] = db.run(LiftTypes.filter(_.id === id).result.head)
 
+  def findByUserId(userId: Int): Future[Seq[LiftType]] = db.run(LiftTypes.filter(_.userId === userId).result)
+
   def insert(liftType: LiftType): Future[Int] = db.run(LiftTypes += liftType)
 
   def update(liftType: LiftType): Future[Int] = db.run(LiftTypes.filter(_.id === liftType.id).update(liftType))

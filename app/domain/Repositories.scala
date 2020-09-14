@@ -38,6 +38,8 @@ trait LiftTypeRepositoryInterface {
 
   def findById(id: Int): Future[LiftType]
 
+  def findByUserId(userId: Int): Future[Seq[LiftType]]
+
   def insert(liftType: LiftType): Future[Int]
 
   def update(liftType: LiftType): Future[Int]
@@ -61,6 +63,8 @@ trait TrainingMenuRepositoryInterface {
   def index(): Future[Seq[TrainingMenu]]
 
   def findById(id: Int): Future[TrainingMenu]
+
+  def findByUserId(userId: Int): Future[Seq[TrainingMenu]]
 
   def insert(trainingMenu: TrainingMenu): Future[Int]
 
