@@ -30,14 +30,17 @@ PUT    /targets/:target_id         controllers.api.TargetController.update(targe
 GET     /categories                             controllers.api.CategoryController.index
 GET     /categories/:category_id                  controllers.api.CategoryController.show(category_id: Int)
 
-GET     /training_menu                            controllers.ListTrainingMenuController.index
-POST    /training_menu                            controllers.CreateTrainingMenuController.store
-POST    /lift_types                            controllers.CreateLiftTypeController.store
-DELETE  /lift_types/:lift_type_id              controllers.DeleteLiftTypeController.delete(lift_type_id: Int)
-DELETE  /training_menu/:training_menu_id        controllers.DeleteTrainingMenuController.delete(training_menu_id: Int)
-GET     /lift_types/:lift_type_id/share  controllers.ShareLiftTypeController.share(lift_type_id: Int)
-POST    /training_menu/lift_types        controllers.RegisterLiftTypesToTrainingMenuController.registerLiftTypesToTrainingMenu
+# UseCase
+GET     /training_menu                                           controllers.ListTrainingMenuController.index
+POST    /training_menu                                           controllers.CreateTrainingMenuController.store
+GET     /training_menu/users/:user_id                            controllers.ListUserTrainingMenuController.index(user_id: Int, category_id: Option[Int])
+DELETE  /training_menu/:training_menu_id                         controllers.DeleteTrainingMenuController.delete(training_menu_id: Int)
 DELETE  /training_menu/:training_menu_id/lift_types/delete       controllers.DeleteLiftTypesFromTrainingMenuController.deleteLiftTypesFromTrainingMenu(training_menu_id: Int)
+POST    /training_menu/lift_types                                controllers.RegisterLiftTypesToTrainingMenuController.registerLiftTypesToTrainingMenu
+POST    /lift_types                                              controllers.CreateLiftTypeController.store
+GET     /lift_types/:lift_type_id/share                          controllers.ShareLiftTypeController.share(lift_type_id: Int)
+DELETE  /lift_types/:lift_type_id                                controllers.DeleteLiftTypeController.delete(lift_type_id: Int)
+GET     /lift_types/users/:user_id                               controllers.ListUserLiftTypeController.index(user_id: Int)
 
 
 

@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/root/muscle-training_manager/conf/routes
-// @DATE:Mon Sep 14 01:17:22 JST 2020
+// @DATE:Tue Sep 22 22:31:13 JST 2020
 
 package controllers;
 
@@ -16,6 +16,8 @@ public class routes {
   public static final controllers.ReverseCreateLiftTypeController CreateLiftTypeController = new controllers.ReverseCreateLiftTypeController(RoutesPrefix.byNamePrefix());
   public static final controllers.ReverseListTrainingMenuController ListTrainingMenuController = new controllers.ReverseListTrainingMenuController(RoutesPrefix.byNamePrefix());
   public static final controllers.ReverseDeleteLiftTypeController DeleteLiftTypeController = new controllers.ReverseDeleteLiftTypeController(RoutesPrefix.byNamePrefix());
+  public static final controllers.ReverseListUserLiftTypeController ListUserLiftTypeController = new controllers.ReverseListUserLiftTypeController(RoutesPrefix.byNamePrefix());
+  public static final controllers.ReverseListUserTrainingMenuController ListUserTrainingMenuController = new controllers.ReverseListUserTrainingMenuController(RoutesPrefix.byNamePrefix());
   public static final controllers.ReverseCreateTrainingMenuController CreateTrainingMenuController = new controllers.ReverseCreateTrainingMenuController(RoutesPrefix.byNamePrefix());
 
   public static class javascript {
@@ -28,6 +30,8 @@ public class routes {
     public static final controllers.javascript.ReverseCreateLiftTypeController CreateLiftTypeController = new controllers.javascript.ReverseCreateLiftTypeController(RoutesPrefix.byNamePrefix());
     public static final controllers.javascript.ReverseListTrainingMenuController ListTrainingMenuController = new controllers.javascript.ReverseListTrainingMenuController(RoutesPrefix.byNamePrefix());
     public static final controllers.javascript.ReverseDeleteLiftTypeController DeleteLiftTypeController = new controllers.javascript.ReverseDeleteLiftTypeController(RoutesPrefix.byNamePrefix());
+    public static final controllers.javascript.ReverseListUserLiftTypeController ListUserLiftTypeController = new controllers.javascript.ReverseListUserLiftTypeController(RoutesPrefix.byNamePrefix());
+    public static final controllers.javascript.ReverseListUserTrainingMenuController ListUserTrainingMenuController = new controllers.javascript.ReverseListUserTrainingMenuController(RoutesPrefix.byNamePrefix());
     public static final controllers.javascript.ReverseCreateTrainingMenuController CreateTrainingMenuController = new controllers.javascript.ReverseCreateTrainingMenuController(RoutesPrefix.byNamePrefix());
   }
 

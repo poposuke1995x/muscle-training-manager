@@ -1,16 +1,16 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/root/muscle-training_manager/conf/routes
-// @DATE:Mon Sep 14 01:17:22 JST 2020
+// @DATE:Tue Sep 22 22:31:13 JST 2020
 
 import play.api.routing.JavaScriptReverseRoute
 
 
 import _root_.controllers.Assets.Asset
 
-// @LINE:33
+// @LINE:34
 package controllers.javascript {
 
-  // @LINE:73
+  // @LINE:76
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -18,7 +18,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:73
+    // @LINE:76
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
@@ -30,7 +30,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:38
+  // @LINE:41
   class ReverseShareLiftTypeController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -38,7 +38,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:38
+    // @LINE:41
     def share: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ShareLiftTypeController.share",
       """
@@ -70,7 +70,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:40
+  // @LINE:38
   class ReverseDeleteLiftTypesFromTrainingMenuController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -78,7 +78,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:40
+    // @LINE:38
     def deleteLiftTypesFromTrainingMenu: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.DeleteLiftTypesFromTrainingMenuController.deleteLiftTypesFromTrainingMenu",
       """
@@ -110,7 +110,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:35
+  // @LINE:40
   class ReverseCreateLiftTypeController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -118,7 +118,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:35
+    // @LINE:40
     def store: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.CreateLiftTypeController.store",
       """
@@ -130,7 +130,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:33
+  // @LINE:34
   class ReverseListTrainingMenuController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -138,7 +138,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:33
+    // @LINE:34
     def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ListTrainingMenuController.index",
       """
@@ -150,7 +150,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:36
+  // @LINE:42
   class ReverseDeleteLiftTypeController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -158,7 +158,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:36
+    // @LINE:42
     def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.DeleteLiftTypeController.delete",
       """
@@ -170,7 +170,47 @@ package controllers.javascript {
   
   }
 
-  // @LINE:34
+  // @LINE:43
+  class ReverseListUserLiftTypeController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:43
+    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.ListUserLiftTypeController.index",
+      """
+        function(user_id0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "lift_types/users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("user_id", user_id0))})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:36
+  class ReverseListUserTrainingMenuController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:36
+    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.ListUserTrainingMenuController.index",
+      """
+        function(user_id0,category_id1) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "training_menu/users/" + encodeURIComponent((""" + implicitly[play.api.mvc.PathBindable[Int]].javascriptUnbind + """)("user_id", user_id0)) + _qS([(""" + implicitly[play.api.mvc.QueryStringBindable[Option[Int]]].javascriptUnbind + """)("category_id", category_id1)])})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:35
   class ReverseCreateTrainingMenuController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -178,7 +218,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:34
+    // @LINE:35
     def store: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.CreateTrainingMenuController.store",
       """
