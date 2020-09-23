@@ -4,7 +4,7 @@ services:
   workspace:
     container_name: workspace
     build:
-      context: env
+      context: workspace
       dockerfile: Dockerfile
     ports:
       - 9000:9000
