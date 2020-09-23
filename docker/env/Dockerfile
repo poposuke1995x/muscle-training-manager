@@ -13,5 +13,5 @@ RUN curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fishe
 RUN ["/bin/fish", "-c", "fisher add jethrokuan/fzf"]
 COPY config.fish /root/.config/fish/
 COPY ./.vimrc /root/
-WORKDIR /root
+WORKDIR /root/muscle-training_manager
 EXPOSE 9000
