@@ -1,4 +1,0 @@
-[debug] "not up to date. inChanged = true, force = false
-[debug] Updating ProjectRef(uri("file:/Users/shachi9engineer/workspace/scala_dev/muscle-training_manager/project/"), "muscle-training_manager-build")...
-[debug] Done updating ProjectRef(uri("file:/Users/shachi9engineer/workspace/scala_dev/muscle-training_manager/project/"), "muscle-training_manager-build")
-[warn] There may be incompatibilities among your library dependencies; run 'evicted' to see detailed eviction warnings.
