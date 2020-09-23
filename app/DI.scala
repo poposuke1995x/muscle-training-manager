@@ -13,5 +13,6 @@ class DI extends AbstractModule {
     bind(classOf[UserRepositoryInterface]).to(classOf[infrastructure.UserRepository])
     bind(classOf[RegisterLiftTypesToTrainingMenuRepositoryInterface]).to(classOf[infrastructure.RegisterLiftTypesToTrainingMenuRepository])
     bind(classOf[DeleteLiftTypesFromTrainingMenuRepositoryInterface]).to(classOf[infrastructure.DeleteLiftTypesFromTrainingMenuRepository])
+    bind(classOf[ListLiftTypeRepositoryInterface]).to(classOf[infrastructure.ListLiftTypeRepository])
   }
 }

@@ -1,11 +1,11 @@
 package usecase.LiftType
 
 import com.google.inject.{Inject, Singleton}
-import domain.{LiftType, LiftTypeRepositoryInterface}
+import domain.{LiftType, ListLiftTypeRepositoryInterface}
 
 import scala.concurrent.Future
 
 @Singleton
-case class ListLiftTypeService @Inject() (repository: LiftTypeRepositoryInterface) {
-  def apply(): Future[Seq[LiftType]] = repository.index()
+case class ListLiftTypeService @Inject() (repository: ListLiftTypeRepositoryInterface) {
+  def apply(bodyPartId: Option[Int]): Future[Seq[LiftType]] = repository.execute(bodyPartId)
 }

@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/root/muscle-training_manager/conf/routes
-// @DATE:Tue Sep 22 22:31:13 JST 2020
+// @DATE:Wed Sep 23 00:44:56 JST 2020
 
 import play.api.mvc.Call
 
@@ -10,14 +10,14 @@ import _root_.controllers.Assets.Asset
 // @LINE:34
 package controllers {
 
-  // @LINE:76
+  // @LINE:77
   class ReverseAssets(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:76
+    // @LINE:77
     def versioned(file:Asset): Call = {
       implicit lazy val _rrc = new play.core.routing.ReverseRouteContext(Map(("path", "/public"))); _rrc
       Call("GET", _prefix + { _defaultPrefix } + "assets/" + implicitly[play.api.mvc.PathBindable[Asset]].unbind("file", file))
@@ -25,14 +25,14 @@ package controllers {
   
   }
 
-  // @LINE:41
+  // @LINE:42
   class ReverseShareLiftTypeController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:41
+    // @LINE:42
     def share(lift_type_id:Int): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "lift_types/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Int]].unbind("lift_type_id", lift_type_id)) + "/share")
@@ -86,13 +86,28 @@ package controllers {
   }
 
   // @LINE:40
-  class ReverseCreateLiftTypeController(_prefix: => String) {
+  class ReverseListLiftTypeController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
     // @LINE:40
+    def index(body_part_id:Option[Int]): Call = {
+      
+      Call("GET", _prefix + { _defaultPrefix } + "lift_types" + play.core.routing.queryString(List(Some(implicitly[play.api.mvc.QueryStringBindable[Option[Int]]].unbind("body_part_id", body_part_id)))))
+    }
+  
+  }
+
+  // @LINE:41
+  class ReverseCreateLiftTypeController(_prefix: => String) {
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:41
     def store(): Call = {
       
       Call("POST", _prefix + { _defaultPrefix } + "lift_types")
@@ -115,14 +130,14 @@ package controllers {
   
   }
 
-  // @LINE:42
+  // @LINE:43
   class ReverseDeleteLiftTypeController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:42
+    // @LINE:43
     def delete(lift_type_id:Int): Call = {
       
       Call("DELETE", _prefix + { _defaultPrefix } + "lift_types/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Int]].unbind("lift_type_id", lift_type_id)))
@@ -130,14 +145,14 @@ package controllers {
   
   }
 
-  // @LINE:43
+  // @LINE:44
   class ReverseListUserLiftTypeController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:43
+    // @LINE:44
     def index(user_id:Int): Call = {
       
       Call("GET", _prefix + { _defaultPrefix } + "lift_types/users/" + play.core.routing.dynamicString(implicitly[play.api.mvc.PathBindable[Int]].unbind("user_id", user_id)))

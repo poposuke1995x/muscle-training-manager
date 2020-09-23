@@ -1,6 +1,6 @@
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/root/muscle-training_manager/conf/routes
-// @DATE:Tue Sep 22 22:31:13 JST 2020
+// @DATE:Wed Sep 23 00:44:56 JST 2020
 
 import play.api.routing.JavaScriptReverseRoute
 
@@ -10,7 +10,7 @@ import _root_.controllers.Assets.Asset
 // @LINE:34
 package controllers.javascript {
 
-  // @LINE:76
+  // @LINE:77
   class ReverseAssets(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -18,7 +18,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:76
+    // @LINE:77
     def versioned: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.Assets.versioned",
       """
@@ -30,7 +30,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:41
+  // @LINE:42
   class ReverseShareLiftTypeController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -38,7 +38,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:41
+    // @LINE:42
     def share: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ShareLiftTypeController.share",
       """
@@ -111,7 +111,7 @@ package controllers.javascript {
   }
 
   // @LINE:40
-  class ReverseCreateLiftTypeController(_prefix: => String) {
+  class ReverseListLiftTypeController(_prefix: => String) {
 
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
@@ -119,6 +119,26 @@ package controllers.javascript {
 
   
     // @LINE:40
+    def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.ListLiftTypeController.index",
+      """
+        function(body_part_id0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "lift_types" + _qS([(""" + implicitly[play.api.mvc.QueryStringBindable[Option[Int]]].javascriptUnbind + """)("body_part_id", body_part_id0)])})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:41
+  class ReverseCreateLiftTypeController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:41
     def store: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.CreateLiftTypeController.store",
       """
@@ -150,7 +170,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:42
+  // @LINE:43
   class ReverseDeleteLiftTypeController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -158,7 +178,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:42
+    // @LINE:43
     def delete: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.DeleteLiftTypeController.delete",
       """
@@ -170,7 +190,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:43
+  // @LINE:44
   class ReverseListUserLiftTypeController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -178,7 +198,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:43
+    // @LINE:44
     def index: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.ListUserLiftTypeController.index",
       """

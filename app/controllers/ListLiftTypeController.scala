@@ -14,8 +14,8 @@ class ListLiftTypeController @Inject()
 
   implicit val formats: DefaultFormats.type = DefaultFormats
 
-  def index: Action[AnyContent] = Action.async {
-    listLiftTypeService().map(liftTypes =>
+  def index(bodyPartId: Option[Int]): Action[AnyContent] = Action.async {
+    listLiftTypeService(bodyPartId).map(liftTypes =>
       Ok(Serialization.write(liftTypes))
     )
   }
