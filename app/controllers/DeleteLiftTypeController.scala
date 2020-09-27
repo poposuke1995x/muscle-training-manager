@@ -1,12 +1,9 @@
 package controllers
 
-import domain.LiftType
 import javax.inject.{Inject, Singleton}
 import org.json4s.DefaultFormats
-import org.json4s.native.JsonMethods
 import play.api.mvc._
-import usecase.LiftType.DeleteLiftTypeService
-
+import usecase.DeleteLiftTypeService
 import scala.concurrent.ExecutionContext
 
 @Singleton

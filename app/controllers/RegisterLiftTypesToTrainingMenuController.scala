@@ -1,15 +1,12 @@
 package controllers
 
-import domain.BodyPart
 import dto.RegisterLiftTypesToTrainingMenuRequest
-import javax.inject.{Inject, Singleton}
+import com.google.inject.{Inject, Singleton}
 import org.json4s.DefaultFormats
 import org.json4s.native.{JsonMethods, Serialization}
 import play.api.mvc._
 import usecase.RegisterLiftTypesToTrainingMenuService
-
 import scala.concurrent.{ExecutionContext, Future}
-import scala.util.{Failure, Success}
 
 @Singleton
 class RegisterLiftTypesToTrainingMenuController @Inject()

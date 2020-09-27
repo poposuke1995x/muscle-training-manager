@@ -5,8 +5,7 @@ import javax.inject.{Inject, Singleton}
 import org.json4s.DefaultFormats
 import org.json4s.native.JsonMethods
 import play.api.mvc._
-import usecase.LiftType.CreateLiftTypeService
-
+import usecase.CreateLiftTypeService
 import scala.concurrent.ExecutionContext
 
 @Singleton

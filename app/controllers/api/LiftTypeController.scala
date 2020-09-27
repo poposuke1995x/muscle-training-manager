@@ -6,7 +6,7 @@ import javax.inject._
 import org.json4s._
 import org.json4s.native.{JsonMethods, Serialization}
 import play.api.mvc._
-import usecase.LiftType.ListLiftTypeService
+import usecase.ListLiftTypeService
 
 import scala.concurrent.ExecutionContext
 import scala.util.{Failure, Success, Try}

@@ -1,4 +1,4 @@
-package usecase.TrainingMenu
+package usecase
 
 import com.google.inject.Inject
 import domain.TrainingMenuRepositoryInterface

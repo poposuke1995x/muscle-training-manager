@@ -1,12 +1,10 @@
 package controllers
 
-import dto.RegisterLiftTypesToTrainingMenuRequest
 import javax.inject.{Inject, Singleton}
 import org.json4s.DefaultFormats
-import org.json4s.native.{JsonMethods, Serialization}
+import org.json4s.native.JsonMethods
 import play.api.mvc._
 import usecase.DeleteLiftTypesFromTrainingMenuService
-
 import scala.concurrent.ExecutionContext
 
 @Singleton

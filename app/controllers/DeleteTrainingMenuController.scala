@@ -3,8 +3,7 @@ package controllers
 import javax.inject.{Inject, Singleton}
 import org.json4s.DefaultFormats
 import play.api.mvc._
-import usecase.TrainingMenu.DeleteTrainingMenuService
-
+import usecase.DeleteTrainingMenuService
 import scala.concurrent.ExecutionContext
 
 @Singleton

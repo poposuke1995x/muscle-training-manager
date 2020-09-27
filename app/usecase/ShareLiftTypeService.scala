@@ -1,4 +1,4 @@
-package usecase.LiftType
+package usecase
 
 import com.google.inject.Inject
 import domain.{LiftType, LiftTypeRepositoryInterface}

@@ -1,9 +1,9 @@
 package controllers
 
-import javax.inject.{Inject, Singleton}
+import com.google.inject.{Inject, Singleton}
 import org.json4s.DefaultFormats
 import play.api.mvc._
-import usecase.LiftType.ShareLiftTypeService
+import usecase.ShareLiftTypeService
 
 import scala.concurrent.ExecutionContext
 

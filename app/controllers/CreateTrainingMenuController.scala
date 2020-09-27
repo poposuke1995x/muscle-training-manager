@@ -1,12 +1,11 @@
 package controllers
 
-import domain.{BodyPart, TrainingMenu}
+import domain.TrainingMenu
 import javax.inject.{Inject, Singleton}
 import org.json4s.DefaultFormats
-import org.json4s.native.{JsonMethods, Serialization}
+import org.json4s.native.JsonMethods
 import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents, Request}
-import usecase.TrainingMenu.{CreateTrainingMenuService, ListTrainingMenuService}
-
+import usecase.CreateTrainingMenuService
 import scala.concurrent.ExecutionContext
 
 @Singleton
