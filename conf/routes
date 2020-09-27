@@ -40,6 +40,7 @@ POST    /training_menu/lift_types                                controllers.Reg
 GET     /lift_types                                              controllers.ListLiftTypeController.index(body_part_id: Option[Int])
 POST    /lift_types                                              controllers.CreateLiftTypeController.store
 GET     /lift_types/:lift_type_id/share                          controllers.ShareLiftTypeController.share(lift_type_id: Int)
+PATCH   /lift_types/:lift_type_id                                controllers.UpdateLiftTypeController.update(lift_type_id: Int)
 DELETE  /lift_types/:lift_type_id                                controllers.DeleteLiftTypeController.delete(lift_type_id: Int)
 #GET     /lift_types/users/:user_id                               controllers.ListUserLiftTypeController.index(user_id: Int)
 

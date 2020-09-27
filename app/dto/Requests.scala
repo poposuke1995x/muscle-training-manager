@@ -16,3 +16,12 @@ case class TargetedLiftTypeRequest(
                                     targetBodyPartIds: List[Int],
                                     isMain: Int
                                   )
+case class LiftTypeRequest(
+                            name: Option[String],
+                            referenceUrl: Option[Option[String]],
+                            description: Option[Option[String]],
+                            defaultRep: Option[Int],
+                            defaultWeight: Option[Int],
+                            defaultSetCount: Option[Int],
+                            shareFlag: Option[Boolean]
+                          )
