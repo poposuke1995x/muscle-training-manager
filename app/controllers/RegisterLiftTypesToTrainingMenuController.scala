@@ -15,9 +15,10 @@ class RegisterLiftTypesToTrainingMenuController @Inject()
 
   implicit val formats: DefaultFormats.type = DefaultFormats
 
-  def registerLiftTypesToTrainingMenu: Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
+  def registerLiftTypesToTrainingMenu(trainingMenuId: Int): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
     Future.sequence(
       registerLiftTypesToTrainingMenuService(
+        trainingMenuId,
         JsonMethods
           .parse(request.body.asJson.get.toString)
           .extract[RegisterLiftTypesToTrainingMenuRequest]

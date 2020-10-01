@@ -1,9 +1,6 @@
 package dto
 
-case class RegisterLiftTypesToTrainingMenuRequest(
-                                                   trainingMenuId: Int,
-                                                   liftTypes: List[TargetedLiftTypeRequest]
-                                                 )
+case class RegisterLiftTypesToTrainingMenuRequest(liftTypes: List[TargetedLiftTypeRequest])
 
 case class TargetedLiftTypeRequest(
                                     id: Int,
@@ -16,6 +13,7 @@ case class TargetedLiftTypeRequest(
                                     targetBodyPartIds: List[Int],
                                     isMain: Int
                                   )
+
 case class LiftTypeRequest(
                             name: Option[String],
                             referenceUrl: Option[Option[String]],
@@ -25,3 +23,5 @@ case class LiftTypeRequest(
                             defaultSetCount: Option[Int],
                             shareFlag: Option[Boolean]
                           )
+
+case class ListMenuLiftTypeRequest(trainingMenuId: Int)

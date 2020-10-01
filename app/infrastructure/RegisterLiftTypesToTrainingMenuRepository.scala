@@ -16,13 +16,13 @@ class RegisterLiftTypesToTrainingMenuRepository @Inject()(protected val dbConfig
   private val LiftActions = TableQuery[models.LiftActionsTable]
   private val Targets = TableQuery[models.TargetsTable]
 
-  def execute(req: RegisterLiftTypesToTrainingMenuRequest): List[Future[Int]] = {
+  def execute(trainingMenuId: Int, req: RegisterLiftTypesToTrainingMenuRequest): List[Future[Int]] = {
     req.liftTypes.map { liftType =>
       db.run((for {
         liftActionId <- (LiftActions returning LiftActions.map(_.id.getOrElse(0))) += LiftAction(
           id = Some(0),
           liftTypeId = liftType.id,
-          trainingMenuId = req.trainingMenuId,
+          trainingMenuId = trainingMenuId,
           lightRep = liftType.lightRep,
           lightWeight = liftType.lightWeight,
           lightSetCount = liftType.lightSetCount,

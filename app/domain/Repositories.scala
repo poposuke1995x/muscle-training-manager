@@ -82,7 +82,7 @@ trait UserRepositoryInterface {
 }
 
 trait RegisterLiftTypesToTrainingMenuRepositoryInterface {
-  def execute(req: RegisterLiftTypesToTrainingMenuRequest): List[Future[Int]]
+  def execute(trainingMenuId: Int, req: RegisterLiftTypesToTrainingMenuRequest): List[Future[Int]]
 }
 
 trait DeleteLiftTypesFromTrainingMenuRepositoryInterface {
@@ -91,4 +91,8 @@ trait DeleteLiftTypesFromTrainingMenuRepositoryInterface {
 
 trait ListLiftTypeRepositoryInterface {
   def execute(bodyPartId: Option[Int]): Future[Seq[LiftType]]
+}
+
+trait ListMenuLiftTypeRepositoryInterface {
+  def execute(trainingMenuId: Int, bodyPartId: Option[Int]): Future[Seq[LiftType]]
 }
