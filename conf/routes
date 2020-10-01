@@ -16,7 +16,7 @@ DELETE  /                                 controllers.api.UserController.delete(
 GET     /body_parts                       controllers.api.BodyPartController.index
 POST    /body_parts                       controllers.api.BodyPartController.store
 GET     /body_parts/:body_part_id         controllers.api.BodyPartController.show(body_part_id: Int)
-PUT    /body_parts/:body_part_id         controllers.api.BodyPartController.update(body_part_id: Int)
+#PUT    /body_parts/:body_part_id         controllers.api.BodyPartController.update(body_part_id: Int)
 #DELETE  /body_parts/:body_part_id         controllers.api.BodyPartController.destroy(body_part_id: Int)
 
 # Target

@@ -19,7 +19,7 @@ case class LiftType(
                      shareFlag: Boolean = false
                    )
 
-case class BodyPart(id: Option[Int], name: String)
+case class BodyPart(id: Option[Int], name: String, categoryId: Int)
 
 case class TrainingMenu(
                          id: Option[Int],

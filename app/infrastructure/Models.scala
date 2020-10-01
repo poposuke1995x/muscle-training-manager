@@ -17,7 +17,9 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
 
     def name = column[String]("name")
 
-    def * = (id, name) <> (BodyPart.tupled, BodyPart.unapply)
+    def categoryId = column[Int]("category_id")
+
+    def * = (id, name, categoryId) <> (BodyPart.tupled, BodyPart.unapply)
 
   }
 

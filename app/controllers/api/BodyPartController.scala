@@ -37,19 +37,19 @@ class BodyPartController @Inject()
       )
       .map(resp => Ok(resp.toString))
   }
-
-  def update(id: Int): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
-    val req = JsonMethods
-      .parse(request.body.asJson.get.toString)
-      .extract[Map[String, Any]]
-    bodyPartRepository.findById(id) onComplete {
-      case Success(value) => bodyPartRepository
-        .update(BodyPart(Some(id), req.getOrElse("name", value.name).toString))
-        .map(resp => Ok(resp.toString))
-      case Failure(exception) => Ok(exception.toString)
-    }
-    Ok("ok")
-  }
+//
+//  def update(id: Int): Action[AnyContent] = Action { implicit request: Request[AnyContent] =>
+//    val req = JsonMethods
+//      .parse(request.body.asJson.get.toString)
+//      .extract[Map[String, Any]]
+//    bodyPartRepository.findById(id) onComplete {
+//      case Success(value) => bodyPartRepository
+//        .update(BodyPart(Some(id), req.getOrElse("name", value.name).toString))
+//        .map(resp => Ok(resp.toString))
+//      case Failure(exception) => Ok(exception.toString)
+//    }
+//    Ok("ok")
+//  }
 
   //  def destroy(id: Int): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
   //    bodyPartRepository
