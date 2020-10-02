@@ -25,3 +25,5 @@ case class LiftTypeRequest(
                           )
 
 case class ListMenuLiftTypeRequest(trainingMenuId: Int)
+
+case class TrainingMenuDetailRequest(name: String, description: String)

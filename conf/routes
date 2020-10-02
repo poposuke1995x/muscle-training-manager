@@ -33,6 +33,7 @@ GET     /categories/:category_id                  controllers.api.CategoryContro
 # UseCase
 GET     /training_menu                                           controllers.ListTrainingMenuController.index
 POST    /training_menu                                           controllers.CreateTrainingMenuController.store
+PUT     /training_menu/:training_menu_id                         controllers.UpdateTrainingMenuController.update(training_menu_id: Int)
 DELETE  /training_menu/:training_menu_id                         controllers.DeleteTrainingMenuController.delete(training_menu_id: Int)
 GET     /training_menu/:training_menu_id/lift_types              controllers.ListMenuLiftTypeController.index(training_menu_id: Int, body_part_id: Option[Int])
 POST    /training_menu/:training_menu_id/lift_types              controllers.RegisterLiftTypesToTrainingMenuController.registerLiftTypesToTrainingMenu(training_menu_id: Int)
