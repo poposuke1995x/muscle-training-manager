@@ -5,20 +5,6 @@ GET     /users/:user_id                    controllers.api.UserController.show(u
 PUT     /users                   controllers.api.UserController.update
 DELETE  /                                 controllers.api.UserController.delete(user_id: Option[Int])
 
-# Lift
-#GET     /lift_types                       controllers.ListLiftTypeController.index
-#POST    /lift_types                       controllers.api.LiftTypeController.store
-#GET     /lift_types/:lift_type_id         controllers.api.LiftTypeController.show(lift_type_id: Int)
-#PATCH    /lift_types/:lift_type_id         controllers.api.LiftTypeController.update(lift_type_id: Int)
-#DELETE  /lift_types/:lift_type_id         controllers.api.LiftTypeController.destroy(lift_type_id: Int)
-
-# BodyPart
-GET     /body_parts                       controllers.api.BodyPartController.index
-POST    /body_parts                       controllers.api.BodyPartController.store
-GET     /body_parts/:body_part_id         controllers.api.BodyPartController.show(body_part_id: Int)
-#PUT    /body_parts/:body_part_id         controllers.api.BodyPartController.update(body_part_id: Int)
-#DELETE  /body_parts/:body_part_id         controllers.api.BodyPartController.destroy(body_part_id: Int)
-
 # Target
 GET     /targets                       controllers.api.TargetController.index
 POST    /targets                       controllers.api.TargetController.store
@@ -28,6 +14,7 @@ PUT    /targets/:target_id         controllers.api.TargetController.update(targe
 
 
 # UseCase
+GET     /body_parts                                              controllers.ListBodyPartController.index
 GET     /categories                                              controllers.ListCategoryController.index
 GET     /training_menu                                           controllers.ListTrainingMenuController.index
 POST    /training_menu                                           controllers.CreateTrainingMenuController.store

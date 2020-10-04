@@ -5,15 +5,7 @@ import dto._
 
 
 trait BodyPartRepositoryInterface {
-  def index(): Future[Seq[BodyPart]]
-
-  def findById(id: Int): Future[BodyPart]
-
-  def insert(liftType: BodyPart): Future[Int]
-
-  def update(liftType: BodyPart): Future[Int]
-
-  def delete(id: Int): Future[Int]
+  def index(): Future[List[BodyPart]]
 }
 
 trait CategoryRepositoryInterface {
