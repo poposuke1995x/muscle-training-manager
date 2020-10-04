@@ -1,4 +1,4 @@
-package controllers.api
+package controllers
 
 import infrastructure.CategoryRepository
 import javax.inject._
@@ -9,7 +9,7 @@ import play.api.mvc._
 import scala.concurrent.ExecutionContext
 
 @Singleton
-class CategoryController @Inject()
+class ListCategoryController @Inject()
 (controllerComponents: ControllerComponents, categoryRepository: CategoryRepository)
 (implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
 
@@ -17,12 +17,6 @@ class CategoryController @Inject()
 
   def index: Action[AnyContent] = Action.async {
     categoryRepository.index().map(categories =>
-      Ok(Serialization.write(categories))
-    )
-  }
-
-  def show(category_id: Int): Action[AnyContent] = Action.async {
-    categoryRepository.findById(category_id).map(categories =>
       Ok(Serialization.write(categories))
     )
   }

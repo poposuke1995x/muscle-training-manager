@@ -14,7 +14,7 @@ class CategoryRepository @Inject()(protected val dbConfigProvider: DatabaseConfi
 
   private val Categories = TableQuery[models.CategoriesTable]
 
-  def index(): Future[Seq[Category]] = db.run(Categories.result)
+  def index(): Future[List[Category]] = db.run(Categories.result).map(_.toList)
 
   def findById(id: Int): Future[Category] = db.run(Categories.filter(_.id === id).result.head)
 

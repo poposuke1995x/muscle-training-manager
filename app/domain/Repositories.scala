@@ -17,7 +17,7 @@ trait BodyPartRepositoryInterface {
 }
 
 trait CategoryRepositoryInterface {
-  def index(): Future[Seq[Category]]
+  def index(): Future[List[Category]]
   def findById(id: Int): Future[Category]
 }
 

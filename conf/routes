@@ -26,11 +26,9 @@ GET     /targets/:target_id         controllers.api.TargetController.show(target
 PUT    /targets/:target_id         controllers.api.TargetController.update(target_id: Int)
 #DELETE  /targets/:target_id         controllers.api.TargetController.destroy(target_id: Int)
 
-# Category
-GET     /categories                             controllers.api.CategoryController.index
-GET     /categories/:category_id                  controllers.api.CategoryController.show(category_id: Int)
 
 # UseCase
+GET     /categories                                              controllers.ListCategoryController.index
 GET     /training_menu                                           controllers.ListTrainingMenuController.index
 POST    /training_menu                                           controllers.CreateTrainingMenuController.store
 PUT     /training_menu/actions                                   controllers.UpdateTrainingActionController.update
