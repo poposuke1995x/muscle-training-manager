@@ -3,11 +3,11 @@ package controllers
 import domain._
 import infrastructure.UserRepository
 import javax.inject._
-import play.api.mvc._
-import scala.concurrent.ExecutionContext
 import org.json4s._
-import org.json4s.native.JsonMethods
-import org.json4s.native.Serialization
+import org.json4s.native.{JsonMethods, Serialization}
+import play.api.mvc._
+
+import scala.concurrent.ExecutionContext
 
 @Singleton
 class UserController @Inject()
@@ -17,7 +17,7 @@ class UserController @Inject()
   implicit val formats: DefaultFormats.type = DefaultFormats
 
   def index: Action[AnyContent] = Action.async {
-    userRepository.all().map(users =>
+    userRepository.index().map(users =>
       Ok(Serialization.write(users))
     )
   }

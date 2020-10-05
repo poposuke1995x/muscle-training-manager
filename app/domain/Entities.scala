@@ -12,22 +12,21 @@ case class LiftType(
                      referenceUrl: Option[String],
                      description: Option[String],
                      importedCount: Int = 0,
-                     serverUid: String,
+                     userId: Int,
                      defaultRep: Int = 0,
                      defaultWeight: Int = 0,
                      defaultSetCount: Int = 0,
                      shareFlag: Boolean = false
                    )
 
-case class BodyPart(id: Option[Int], name: String)
+case class BodyPart(id: Option[Int], name: String, categoryId: Int)
 
 case class TrainingMenu(
                          id: Option[Int],
                          name: String,
                          categoryId: Int,
                          description: Option[String],
-                         importedCount: Int = 0,
-                         userUid: String,
+                         userId: Int,
                          shareFlag: Boolean = false
                        )
 

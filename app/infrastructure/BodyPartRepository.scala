@@ -4,33 +4,25 @@ import domain._
 import javax.inject.Inject
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
-
 import scala.concurrent.{ExecutionContext, Future}
 
-class BodyPartRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(implicit executionContext: ExecutionContext) extends HasDatabaseConfigProvider[JdbcProfile] {
+class BodyPartRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, models: Models)(implicit executionContext: ExecutionContext)
+  extends HasDatabaseConfigProvider[JdbcProfile] with BodyPartRepositoryInterface {
 
   import profile.api._
 
-  private val BodyParts = TableQuery[BodyPartsTable]
 
-  def all(): Future[Seq[BodyPart]] = db.run(BodyParts.result)
+  private val BodyParts = TableQuery[models.BodyPartsTable]
+
+  def index(): Future[List[BodyPart]] = db.run(BodyParts.result).map(_.toList)
 
   def findById(id: Int): Future[BodyPart] = db.run(BodyParts.filter(_.id === id).result.head)
 
-  def insert(liftType: BodyPart): Future[Int] = db.run(BodyParts += liftType)
+  def insert(bodyPart: BodyPart): Future[Int] = db.run(BodyParts returning BodyParts.map(_.id.getOrElse(0)) += bodyPart)
 
-  def update(liftType: BodyPart): Future[Int] = db.run(BodyParts.filter(_.id === liftType.id).update(liftType))
+  def update(bodyPart: BodyPart): Future[Int] = db.run(BodyParts.filter(_.id === bodyPart.id).update(bodyPart))
 
   def delete(id: Int): Future[Int] = db.run(BodyParts.filter(_.id === id).delete)
 
-  private class BodyPartsTable(tag: Tag) extends Table[BodyPart](tag, "body_parts") {
-
-    def id = column[Option[Int]]("id", O.PrimaryKey, O.AutoInc)
-
-    def name = column[String]("name")
-
-    def * = (id, name) <> (BodyPart.tupled, BodyPart.unapply)
-
-  }
 
 }

@@ -2,14 +2,16 @@ package filters
 
 import java.io.FileInputStream
 import java.util
+
 import akka.stream.Materializer
 import com.google.auth.oauth2.GoogleCredentials
 import com.google.firebase.{FirebaseApp, FirebaseOptions}
-import com.google.firebase.auth.{FirebaseAuth, FirebaseToken}
 import com.google.inject.Inject
 import play.api.Configuration
 import play.api.mvc.Results.Forbidden
 import play.api.mvc.{Filter, RequestHeader, Result}
+import utils.Utils
+
 import scala.concurrent.{ExecutionContext, Future}
 
 class AuthFilter @Inject() (config: Configuration)(implicit executionContext: ExecutionContext, implicit val mat: Materializer) extends Filter {
@@ -25,7 +27,7 @@ class AuthFilter @Inject() (config: Configuration)(implicit executionContext: Ex
   }
 
   def apply(nextFilter: RequestHeader => Future[Result])(rh: RequestHeader): Future[Result] = {
-    val uid = getUid(rh.headers.get("Authorization").getOrElse(""))
+    val uid = Utils.getFirebaseUid(rh.headers.get("Authorization").getOrElse(""))
     if (checkAuth(uid)) {
       nextFilter(rh)
     } else {
@@ -35,23 +37,6 @@ class AuthFilter @Inject() (config: Configuration)(implicit executionContext: Ex
     }
   }
 
-  def getUid(idToken: String): String =  {
-    val decodedToken: Option[FirebaseToken] =
-      try {
-        Some(FirebaseAuth.getInstance.verifyIdToken(idToken))
-      }
-      catch {
-        case _: Any => None
-      }
-
-    val uid: String = decodedToken match {
-      case Some(dToken) => dToken.getUid
-      case None => ""
-    }
-    uid
-  }
-//FixMe: デプロイ前に修正
-//  def checkAuth(uid: String): Boolean = uid.nonEmpty
-  def checkAuth(uid: String): Boolean = true
+  def checkAuth(uid: String): Boolean = true /* FixMe: デプロイ前に修正 uid.nonEmpty */
 
 }

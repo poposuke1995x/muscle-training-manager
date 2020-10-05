@@ -1,62 +1,20 @@
-# User
-GET     /users                             controllers.UserController.index
-POST    /users                            controllers.UserController.store
-GET     /users/:user_id                    controllers.UserController.show(user_id: Int)
-PUT     /users                   controllers.UserController.update
-DELETE  /                                 controllers.UserController.delete(user_id: Option[Int])
-
-# Lift
-GET     /lift_type                       controllers.LiftTypeController.index
-POST    /lift_type                       controllers.LiftTypeController.store
-GET     /lift_type/:lift_type_id         controllers.LiftTypeController.show(lift_type_id: Int)
-PATCH    /lift_type/:lift_type_id         controllers.LiftTypeController.update(lift_type_id: Int)
-#DELETE  /lift_type/:lift_type_id         controllers.LiftTypeController.destroy(lift_type_id: Int)
-
-# BodyPart
-GET     /body_parts                       controllers.BodyPartController.index
-POST    /body_parts                       controllers.BodyPartController.store
-GET     /body_parts/:body_part_id         controllers.BodyPartController.show(body_part_id: Int)
-PUT    /body_parts/:body_part_id         controllers.BodyPartController.update(body_part_id: Int)
-#DELETE  /body_parts/:body_part_id         controllers.BodyPartController.destroy(body_part_id: Int)
-
-# Target
-GET     /targets                       controllers.TargetController.index
-POST    /targets                       controllers.TargetController.store
-GET     /targets/:target_id         controllers.TargetController.show(target_id: Int)
-PUT    /targets/:target_id         controllers.TargetController.update(target_id: Int)
-#DELETE  /targets/:target_id         controllers.TargetController.destroy(target_id: Int)
-
-# Category
-GET     /categories                             controllers.CategoryController.index
-GET     /categories/:category_id                  controllers.CategoryController.show(category_id: Int)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# UseCase
+GET     /body_parts                                              controllers.ListBodyPartController.index
+GET     /categories                                              controllers.ListCategoryController.index
+GET     /training_menu                                           controllers.ListTrainingMenuController.index
+POST    /training_menu                                           controllers.CreateTrainingMenuController.store
+PUT     /training_menu/actions                                   controllers.UpdateTrainingActionController.update
+PUT     /training_menu/:training_menu_id                         controllers.UpdateTrainingMenuController.update(training_menu_id: Int)
+DELETE  /training_menu/:training_menu_id                         controllers.DeleteTrainingMenuController.delete(training_menu_id: Int)
+GET     /training_menu/:training_menu_id/lift_types              controllers.ListMenuLiftTypeController.index(training_menu_id: Int, body_part_id: Option[Int])
+POST    /training_menu/:training_menu_id/lift_types              controllers.RegisterLiftTypesToTrainingMenuController.registerLiftTypesToTrainingMenu(training_menu_id: Int)
+DELETE  /training_menu/:training_menu_id/lift_types              controllers.DeleteLiftTypesFromTrainingMenuController.deleteLiftTypesFromTrainingMenu(training_menu_id: Int)
+GET     /lift_types                                              controllers.ListLiftTypeController.index(body_part_id: Option[Int])
+POST    /lift_types                                              controllers.CreateLiftTypeController.store
+GET     /lift_types/:lift_type_id                                controllers.GetLiftTypeController.show(lift_type_id: Int)
+PATCH   /lift_types/:lift_type_id                                controllers.UpdateLiftTypeController.update(lift_type_id: Int)
+DELETE  /lift_types/:lift_type_id                                controllers.DeleteLiftTypeController.delete(lift_type_id: Int)
+PUT     /lift_types/:lift_type_id/share                          controllers.ShareLiftTypeController.share(lift_type_id: Int)
 
 
 
