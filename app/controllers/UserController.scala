@@ -1,4 +1,4 @@
-package controllers.api
+package controllers
 
 import domain._
 import infrastructure.UserRepository

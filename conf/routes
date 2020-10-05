@@ -1,9 +1,9 @@
 # User
-GET     /users                             controllers.api.UserController.index
-POST    /users                            controllers.api.UserController.store
-GET     /users/:user_id                    controllers.api.UserController.show(user_id: Int)
-PUT     /users                   controllers.api.UserController.update
-DELETE  /                                 controllers.api.UserController.delete(user_id: Option[Int])
+GET     /users                             controllers.UserController.index
+POST    /users                            controllers.UserController.store
+GET     /users/:user_id                    controllers.UserController.show(user_id: Int)
+PUT     /users                   controllers.UserController.update
+DELETE  /                                 controllers.UserController.delete(user_id: Option[Int])
 
 # Target
 GET     /targets                       controllers.api.TargetController.index
