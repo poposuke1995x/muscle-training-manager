@@ -1,18 +1,3 @@
-# User
-GET     /users                             controllers.UserController.index
-POST    /users                            controllers.UserController.store
-GET     /users/:user_id                    controllers.UserController.show(user_id: Int)
-PUT     /users                   controllers.UserController.update
-DELETE  /                                 controllers.UserController.delete(user_id: Option[Int])
-
-# Target
-GET     /targets                       controllers.api.TargetController.index
-POST    /targets                       controllers.api.TargetController.store
-GET     /targets/:target_id         controllers.api.TargetController.show(target_id: Int)
-PUT    /targets/:target_id         controllers.api.TargetController.update(target_id: Int)
-#DELETE  /targets/:target_id         controllers.api.TargetController.destroy(target_id: Int)
-
-
 # UseCase
 GET     /body_parts                                              controllers.ListBodyPartController.index
 GET     /categories                                              controllers.ListCategoryController.index
@@ -30,33 +15,6 @@ GET     /lift_types/:lift_type_id                                controllers.Get
 PATCH   /lift_types/:lift_type_id                                controllers.UpdateLiftTypeController.update(lift_type_id: Int)
 DELETE  /lift_types/:lift_type_id                                controllers.DeleteLiftTypeController.delete(lift_type_id: Int)
 PUT     /lift_types/:lift_type_id/share                          controllers.ShareLiftTypeController.share(lift_type_id: Int)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
