@@ -36,6 +36,8 @@ trait LiftTypeRepositoryInterface {
 
   def update(liftType: LiftType): Future[Int]
 
+  def share(liftTypeId: Int): Future[Int]
+
   def delete(id: Int): Future[Int]
 }
 

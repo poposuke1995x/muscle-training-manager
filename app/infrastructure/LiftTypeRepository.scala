@@ -24,6 +24,8 @@ class LiftTypeRepository @Inject()(protected val dbConfigProvider: DatabaseConfi
 
   def update(liftType: LiftType): Future[Int] = db.run(LiftTypes.filter(_.id === liftType.id).update(liftType))
 
+  def share(liftTypeId: Int): Future[Int] = db.run(LiftTypes.filter(_.id === liftTypeId).map(_.shareFlag).update(true))
+
   def delete(id: Int): Future[Int] = db.run(LiftTypes.filter(_.id === id).delete)
 
 
