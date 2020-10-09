@@ -10,7 +10,7 @@ services:
       - 9000:9000
     tty: true
     volumes:
-      - $HOME/workspace/scala_dev/muscle-training_manager:/root/muscle-training_manager
+      - $HOME/workspace/scala_dev/muscle-training-manager-api:/root/muscle-training-manager-api
   db:
     image: postgres:latest
     container_name: postgres
