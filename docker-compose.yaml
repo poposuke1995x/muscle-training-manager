@@ -4,20 +4,22 @@ services:
   workspace:
     container_name: workspace
     build:
-      context: workspace
+      context: docker/workspace
       dockerfile: Dockerfile
     ports:
       - 9000:9000
     tty: true
     volumes:
-      - $HOME/workspace/scala_dev/muscle-training_manager:/root/muscle-training_manager
+      - $HOME/workspace/scala_dev/muscle-training-manager-api:/root/muscle-training-manager-api
   db:
     image: postgres:latest
     container_name: postgres
+    build:
+      context: docker
     ports:
       - 5432:5432
     volumes:
-      - ./postgres/init:/docker-entrypoint-initdb.d
+      - ./docker/postgres/init:/docker-entrypoint-initdb.d
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
