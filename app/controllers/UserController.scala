@@ -6,12 +6,13 @@ import javax.inject._
 import org.json4s._
 import org.json4s.native.{JsonMethods, Serialization}
 import play.api.mvc._
+import utils.Utils
 
 import scala.concurrent.ExecutionContext
 
 @Singleton
 class UserController @Inject()
-(controllerComponents: ControllerComponents, userRepository: UserRepository)
+(controllerComponents: ControllerComponents, userRepository: UserRepository, util: Utils)
 (implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
 
   implicit val formats: DefaultFormats.type = DefaultFormats
@@ -22,10 +23,14 @@ class UserController @Inject()
     )
   }
 
-  def show(id: Int): Action[AnyContent] = Action.async {
-    userRepository.findById(id).map(users =>
-      Ok(Serialization.write(users))
-    )
+  def show: Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
+    userRepository
+      .findIdByUid(
+        util.getFirebaseUid(request.headers.get("Authorization").getOrElse(""))
+      )
+      .map(users =>
+        Ok(Serialization.write(users))
+      )
   }
 
   def store: Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>

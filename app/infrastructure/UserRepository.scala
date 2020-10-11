@@ -18,6 +18,8 @@ class UserRepository @Inject()(protected val dbConfigProvider: DatabaseConfigPro
 
   def findById(id: Int): Future[User] = db.run(Users.filter(_.id === id).result.head)
 
+  def findIdByUid(uid: String): Future[Int] = db.run(Users.filter(_.firebase_uid === uid).result.head.map(_.id.get))
+
   def insert(user: User): Future[Int] = db.run(Users += user)
 
   def update(user: User): Future[Int] = db.run(Users.filter(_.id === user.id).update(user))

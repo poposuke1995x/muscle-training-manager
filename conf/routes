@@ -15,7 +15,7 @@ GET     /lift_types/:lift_type_id                                controllers.Get
 PATCH   /lift_types/:lift_type_id                                controllers.UpdateLiftTypeController.update(lift_type_id: Int)
 DELETE  /lift_types/:lift_type_id                                controllers.DeleteLiftTypeController.delete(lift_type_id: Int)
 PUT     /lift_types/:lift_type_id/share                          controllers.ShareLiftTypeController.share(lift_type_id: Int)
-
+GET     /user_id                                                 controllers.UserController.show
 
 
 
