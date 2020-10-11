@@ -8,9 +8,7 @@ import scala.concurrent.Future
 case class CreateUserService @Inject()(repository: UserRepositoryInterface) {
   def apply(user: User): Future[Int] = {
     repository
-      .insert(
-user
-      )
+      .insert(user)
   }
 
 }
