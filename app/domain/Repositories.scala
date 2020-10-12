@@ -88,7 +88,7 @@ trait ListLiftTypeRepositoryInterface {
 }
 
 trait ListMenuLiftTypeRepositoryInterface {
-  def execute(trainingMenuId: Int, bodyPartId: Option[Int]): Future[Seq[LiftType]]
+  def execute(trainingMenuId: Int, bodyPartId: Option[Int]): Future[(Seq[LiftType], Seq[LiftAction])]
 }
 
 trait UpdateTrainingActionRepositoryInterface {
