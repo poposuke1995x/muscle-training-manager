@@ -16,7 +16,7 @@ PATCH   /lift_types/:lift_type_id                                controllers.Upd
 DELETE  /lift_types/:lift_type_id                                controllers.DeleteLiftTypeController.delete(lift_type_id: Int)
 PUT     /lift_types/:lift_type_id/share                          controllers.ShareLiftTypeController.share(lift_type_id: Int)
 GET     /user_id                                                 controllers.UserController.show
-POST    /users                                                   controllers.UserController.store
+#POST    /users                                                   controllers.UserController.store
 
 
 # Map static resources from the /public folder to the /assets URL path

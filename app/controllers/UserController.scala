@@ -31,17 +31,17 @@ class UserController @Inject()
     )
   }
 
-  def store: Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    util.getUserId(request.headers.get("Authorization").getOrElse(""))
-    match {
-      case 0 => Future(Forbidden("existing user"))
-      case _ => createUerService(
-        JsonMethods
-          .parse(request.body.asJson.get.toString)
-          .extract[User])
-        .map(resp => Ok(resp.toString))
-    }
-  }
+//  def store: Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
+//    util.getUserId(request.headers.get("Authorization").getOrElse(""))
+//    match {
+//      case id if id.value.get == 0 => Future(Forbidden("existing user"))
+//      case _ => createUerService(
+//        JsonMethods
+//          .parse(request.body.asJson.get.toString)
+//          .extract[User])
+//        .map(resp => Ok(resp.toString))
+//    }
+//  }
 
 //  def update: Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
 //    userRepository
