@@ -1,8 +1,13 @@
 package utils
 
 import com.google.firebase.auth.{FirebaseAuth, FirebaseToken}
+import com.google.inject.Inject
+import domain.UserRepositoryInterface
 
-object Utils extends App {
+import scala.concurrent.{ExecutionContext, Future}
+
+
+case class Utils @Inject()(repository: UserRepositoryInterface)(implicit executionContext: ExecutionContext) {
   def getFirebaseUid(idToken: String): String =  {
     val decodedToken: Option[FirebaseToken] =
       try {
@@ -17,4 +22,6 @@ object Utils extends App {
       case None => ""
     }
   }
+
+  def getUserId(idToken: String): Future[Int] = repository.findIdByUid(getFirebaseUid(idToken))
 }
