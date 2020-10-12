@@ -1,9 +1,10 @@
 package infrastructure
 
 import com.google.inject.Inject
-import domain.{LiftType, ListMenuLiftTypeRepositoryInterface}
+import domain.{LiftAction, LiftType, ListMenuLiftTypeRepositoryInterface}
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
+
 import scala.concurrent.{ExecutionContext, Future}
 
 class ListMenuLiftTypeRepository @Inject()
@@ -14,16 +15,25 @@ class ListMenuLiftTypeRepository @Inject()
 
   private val LiftActions = TableQuery[models.LiftActionsTable]
   private val LiftTypes = TableQuery[models.LiftTypesTable]
+  private val Targets = TableQuery[models.TargetsTable]
 
-  def execute(trainingMenuId: Int, bodyPartId: Option[Int]): Future[Seq[LiftType]] = db.run(
+  def execute(trainingMenuId: Int, bodyPartId: Option[Int]): Future[(Seq[LiftType], Seq[LiftAction])] = db.run(
     (for {
-      liftTypeIds <- LiftActions
-        .filter(_.trainingMenuId === trainingMenuId)
-        .map(_.liftTypeId)
-        .result
-      result <- LiftTypes
-        .filter(_.id inSetBind liftTypeIds)
-        .result
-    } yield result).transactionally
+      targets <- Targets.filter(_.bodyPartId === bodyPartId).result
+
+      liftActions <- bodyPartId.getOrElse(0) match {
+        case bodyPartId if bodyPartId <= 0 =>
+          LiftActions
+          .filter(_.trainingMenuId === trainingMenuId)
+          .result
+        case bodyPartId if bodyPartId > 0 =>
+          LiftActions
+          .filter(_.id inSetBind targets.map(_.liftActionId))
+          .filter(_.trainingMenuId === trainingMenuId)
+          .result
+      }
+
+      liftTypes <- LiftTypes.filter(_.id inSetBind liftActions.map(_.liftTypeId)).result
+    } yield (liftTypes, liftActions)).transactionally
   )
 }
