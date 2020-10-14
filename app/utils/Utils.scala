@@ -13,8 +13,7 @@ case class Utils @Inject()(repository: UserRepositoryInterface)(implicit executi
   case class Pipeline[T](x: T) {
     def |>[S](f: T => S): S = f(x)
   }
-  // ####### usage #######
-  //implicit def Pipeline[T](x: T) = new Pipeline(x)
+
   def getFirebaseUid(idToken: String): String =  {
     val decodedToken: Option[FirebaseToken] =
       try {
