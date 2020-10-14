@@ -3,6 +3,7 @@
   <component name="ScalaCompilerConfiguration">
     <profile name="sbt 1" modules="muscle-training_manager_8251" />
     <profile name="sbt 2" modules="muscle-training-manager">
+      <option name="implicitConversions" value="true" />
       <option name="deprecationWarnings" value="true" />
       <option name="uncheckedWarnings" value="true" />
       <parameters>
