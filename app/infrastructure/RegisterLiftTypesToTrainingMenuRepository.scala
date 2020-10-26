@@ -1,7 +1,7 @@
 package infrastructure
 
 import domain.{LiftAction, RegisterLiftTypesToTrainingMenuRepositoryInterface, Target}
-import dto.RegisterLiftTypesToTrainingMenuRequest
+import dto.TargetedLiftTypeRequest
 import javax.inject.Inject
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
@@ -16,8 +16,8 @@ class RegisterLiftTypesToTrainingMenuRepository @Inject()(protected val dbConfig
   private val LiftActions = TableQuery[models.LiftActionsTable]
   private val Targets = TableQuery[models.TargetsTable]
 
-  def execute(trainingMenuId: Int, req: RegisterLiftTypesToTrainingMenuRequest): List[Future[Int]] = {
-    req.liftTypes.map { liftType =>
+  def execute(trainingMenuId: Int, req: List[TargetedLiftTypeRequest]): List[Future[Int]] = {
+    req.map { liftType =>
       db.run((for {
         liftActionId <- (LiftActions returning LiftActions.map(_.id.getOrElse(0))) += LiftAction(
           id = Some(0),

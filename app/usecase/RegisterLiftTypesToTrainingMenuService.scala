@@ -2,9 +2,10 @@ package usecase
 
 import com.google.inject.Inject
 import domain.RegisterLiftTypesToTrainingMenuRepositoryInterface
-import dto.RegisterLiftTypesToTrainingMenuRequest
+import dto.TargetedLiftTypeRequest
+
 import scala.concurrent.Future
 
 case class RegisterLiftTypesToTrainingMenuService @Inject()(repository: RegisterLiftTypesToTrainingMenuRepositoryInterface) {
-  def apply(trainingMenuId: Int, req: RegisterLiftTypesToTrainingMenuRequest): List[Future[Int]] = repository.execute(trainingMenuId: Int, req)
+  def apply(trainingMenuId: Int, req: List[TargetedLiftTypeRequest]): List[Future[Int]] = repository.execute(trainingMenuId: Int, req)
 }

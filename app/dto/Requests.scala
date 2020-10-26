@@ -1,7 +1,5 @@
 package dto
 
-case class RegisterLiftTypesToTrainingMenuRequest(liftTypes: List[TargetedLiftTypeRequest])
-
 case class TargetedLiftTypeRequest(
                                     id: Int,
                                     lightRep: Int = 0,
