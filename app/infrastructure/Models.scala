@@ -19,7 +19,7 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
 
     def categoryId = column[Int]("category_id")
 
-    def * = (id, name, categoryId) <> (BodyPart.tupled, BodyPart.unapply)
+    def * = (id, name, categoryId).<>(BodyPart.tupled, BodyPart.unapply)
 
   }
 
@@ -29,7 +29,7 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
 
     def name = column[String]("name")
 
-    def * = (id, name) <> (Category.tupled, Category.unapply)
+    def * = (id, name).<>(Category.tupled, Category.unapply)
   }
 
   class LiftActionsTable(tag: Tag) extends Table[LiftAction](tag, "lift_actions") {
@@ -62,7 +62,7 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
       heavyRep,
       heavyWeight,
       heavySetCount,
-    ) <> (LiftAction.tupled, LiftAction.unapply)
+      ).<>(LiftAction.tupled, LiftAction.unapply)
   }
 
   class LiftTypesTable(tag: Tag) extends Table[LiftType](tag, "lift_types") {
@@ -98,7 +98,7 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
       defaultWeight,
       defaultSetCount,
       shareFlag
-    ) <> (LiftType.tupled, LiftType.unapply)
+      ).<>(LiftType.tupled, LiftType.unapply)
   }
 
   class TargetsTable(tag: Tag) extends Table[Target](tag, "targets") {
@@ -111,7 +111,7 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
 
     def isMain = column[Boolean]("is_main")
 
-    def * = (id, liftActionId, bodyPartId, isMain) <> (Target.tupled, Target.unapply)
+    def * = (id, liftActionId, bodyPartId, isMain).<>(Target.tupled, Target.unapply)
   }
 
   class TrainingMenuTable(tag: Tag) extends Table[TrainingMenu](tag, "training_menu") {
@@ -135,7 +135,7 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
       description,
       userId,
       shareFlag
-    ) <> (TrainingMenu.tupled, TrainingMenu.unapply)
+      ).<>(TrainingMenu.tupled, TrainingMenu.unapply)
 
   }
 
@@ -147,7 +147,7 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
 
     def firebase_uid = column[String]("firebase_uid")
 
-    def * = (id, name, firebase_uid) <> (User.tupled, User.unapply)
+    def * = (id, name, firebase_uid).<>(User.tupled, User.unapply)
   }
 
 }
