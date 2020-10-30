@@ -13,8 +13,10 @@ create table if not exists lift_actions
     heavy_rep        integer default 0,
     heavy_weight     integer default 0,
     heavy_set_count  integer default 0
---  user_uid varchar(200) references users(firebase_uid)
 );
+
+alter table lift_actions
+    add constraint unique_lift_action unique (lift_type_id, training_menu_id);
 
 insert into lift_actions (lift_type_id, training_menu_id)
 values (1, 1);
