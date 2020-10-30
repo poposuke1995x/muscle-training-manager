@@ -120,8 +120,6 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
 
     def name = column[String]("name")
 
-    def categoryId = column[Int]("category_id")
-
     def description = column[Option[String]]("description")
 
     def userId = column[Int]("user_id")
@@ -131,7 +129,6 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
     def * = (
       id,
       name,
-      categoryId,
       description,
       userId,
       shareFlag
