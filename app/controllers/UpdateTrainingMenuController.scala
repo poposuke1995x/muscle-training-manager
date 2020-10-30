@@ -17,12 +17,7 @@ class UpdateTrainingMenuController @Inject()
   implicit val formats: DefaultFormats.type = DefaultFormats
 
   def update(trainingMenuId: Int): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    (try {
-      Some(JsonMethods.parse(request.body.asJson.get.toString).extract[TrainingMenuDetailRequest])
-    } catch {
-      case _: Any => None
-    })
-    match {
+    Option(JsonMethods.parse(request.body.asJson.get.toString).extract[TrainingMenuDetailRequest]) match {
       case Some(value) =>
         if (value.name != null) {
           updateTrainingMenuService(trainingMenuId, value).map(resp => Ok(resp.toString))
