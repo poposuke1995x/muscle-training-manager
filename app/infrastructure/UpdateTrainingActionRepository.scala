@@ -15,16 +15,17 @@ class UpdateTrainingActionRepository @Inject()
 
   private val LiftActions = TableQuery[models.LiftActionsTable]
 
-  override def execute(actions: List[LiftAction]): Future[Int] = try {
+  override def execute(actions: List[LiftAction]): Future[Int] = Option(
     db.run({
       DBIO.seq(actions.map(action =>
-        LiftActions.filter(_.id === action.id).update(action)
-      ): _*)
+        LiftActions
+          .filter(_.liftTypeId === action.liftTypeId)
+          .filter(_.trainingMenuId === action.trainingMenuId)
+          .update(action)
+      ): _*).transactionally
     })
-    Future(1)
-  }
-  catch {
-    case e: Any =>
-      Future(0)
+  ) match {
+    case Some(_) => Future(1)
+    case None => Future(0)
   }
 }

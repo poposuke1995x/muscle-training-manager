@@ -1,11 +1,12 @@
 package controllers
 
-import dto.RegisterLiftTypesToTrainingMenuRequest
 import com.google.inject.{Inject, Singleton}
+import dto.TargetedLiftTypeRequest
 import org.json4s.DefaultFormats
 import org.json4s.native.{JsonMethods, Serialization}
 import play.api.mvc._
 import usecase.RegisterLiftTypesToTrainingMenuService
+
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
@@ -21,7 +22,7 @@ class RegisterLiftTypesToTrainingMenuController @Inject()
         trainingMenuId,
         JsonMethods
           .parse(request.body.asJson.get.toString)
-          .extract[RegisterLiftTypesToTrainingMenuRequest]
+          .extract[List[TargetedLiftTypeRequest]]
       )
     ).map(resp => Ok(Serialization.write(resp)))
   }

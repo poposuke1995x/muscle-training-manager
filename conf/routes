@@ -17,7 +17,5 @@ DELETE  /lift_types/:lift_type_id                                controllers.Del
 PUT     /lift_types/:lift_type_id/share                          controllers.ShareLiftTypeController.share(lift_type_id: Int)
 
 
-
-
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

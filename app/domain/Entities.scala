@@ -24,7 +24,6 @@ case class BodyPart(id: Option[Int], name: String, categoryId: Int)
 case class TrainingMenu(
                          id: Option[Int],
                          name: String,
-                         categoryId: Int,
                          description: Option[String],
                          userId: Int,
                          shareFlag: Boolean = false

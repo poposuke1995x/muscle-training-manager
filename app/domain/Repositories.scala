@@ -58,7 +58,7 @@ trait TrainingMenuRepositoryInterface {
 
   def findById(id: Int): Future[TrainingMenu]
 
-  def findByUserId(userId: Int, categoryId: Option[Int]): Future[Seq[TrainingMenu]]
+//  def findByUserId(userId: Int, categoryId: Option[Int]): Future[Seq[TrainingMenu]]
 
   def insert(trainingMenu: TrainingMenu): Future[Int]
 
@@ -70,13 +70,14 @@ trait TrainingMenuRepositoryInterface {
 trait UserRepositoryInterface {
   def index(): Future[Seq[User]]
   def findById(id: Int): Future[User]
+  def findIdByUid(uid: String): Future[Int]
   def insert(user: User): Future[Int]
   def update(user: User): Future[Int]
   def delete(id: Int): Future[Int]
 }
 
 trait RegisterLiftTypesToTrainingMenuRepositoryInterface {
-  def execute(trainingMenuId: Int, req: RegisterLiftTypesToTrainingMenuRequest): List[Future[Int]]
+  def execute(trainingMenuId: Int, req: List[TargetedLiftTypeRequest]): List[Future[Int]]
 }
 
 trait DeleteLiftTypesFromTrainingMenuRepositoryInterface {
@@ -88,7 +89,7 @@ trait ListLiftTypeRepositoryInterface {
 }
 
 trait ListMenuLiftTypeRepositoryInterface {
-  def execute(trainingMenuId: Int, bodyPartId: Option[Int]): Future[Seq[LiftType]]
+  def execute(trainingMenuId: Int, bodyPartId: Option[Int]): Future[(Seq[LiftType], Seq[LiftAction])]
 }
 
 trait UpdateTrainingActionRepositoryInterface {

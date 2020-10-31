@@ -16,7 +16,6 @@ case class UpdateTrainingMenuService @Inject()
   def genTrainingMenu(origin: TrainingMenu, trainingMenuDetailRequest: TrainingMenuDetailRequest): TrainingMenu = TrainingMenu(
     id = origin.id,
     name = trainingMenuDetailRequest.name,
-    categoryId = origin.categoryId,
     description = Some(trainingMenuDetailRequest.description),
     userId = origin.userId,
     shareFlag = origin.shareFlag
