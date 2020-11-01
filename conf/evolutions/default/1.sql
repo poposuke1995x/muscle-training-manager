@@ -28,3 +28,4 @@ insert into users (name, firebase_uid)
 values ('@kanao', 'zdNtokWPn5U991NjycibUSMWeen1');
 
 -- !Downs
+drop table users;

@@ -14,3 +14,4 @@ insert into targets (lift_action_id, body_part_id, is_main)
 values (1, 1, true);
 
 -- !Downs
+drop table targets;

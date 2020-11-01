@@ -34,3 +34,4 @@ values ('その他');
 
 
 -- !Downs
+drop table categories;

@@ -70,3 +70,4 @@ insert into body_parts (name, category_id)
 values ('腹斜筋', 5);
 
 -- !Downs
+drop table body_parts;
