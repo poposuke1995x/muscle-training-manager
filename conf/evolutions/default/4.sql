@@ -12,7 +12,7 @@ create table if not exists training_menu
 );
 
 insert into training_menu (name, user_id, share_flag)
-values ('胸の日', 1, true);
+values ('サンプルメニュー', 1, true);
 
 -- !Downs
 drop table training_menu;
