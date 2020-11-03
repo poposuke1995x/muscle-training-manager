@@ -16,7 +16,7 @@ class UpdateTrainingActionController @Inject()
   implicit val formats: DefaultFormats.type = DefaultFormats
 
   def update: Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    Option(JsonMethods.parse(request.body.asJson.get.toString).extract[List[LiftAction]]) match {
+    JsonMethods.parse(request.body.asJson.get.toString).extractOpt[List[LiftAction]] match {
       case Some(value) => updateTrainingActionService(value).map(resp => Ok(resp.toString))
       case None => Future(BadRequest(Serialization.write(Map("message" -> "bad request"))))
     }

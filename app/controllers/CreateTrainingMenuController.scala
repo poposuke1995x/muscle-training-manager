@@ -3,23 +3,25 @@ package controllers
 import domain.TrainingMenu
 import javax.inject.{Inject, Singleton}
 import org.json4s.DefaultFormats
-import org.json4s.native.JsonMethods
-import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents, Request}
+import org.json4s.native.{JsonMethods, Serialization}
+import play.api.mvc._
 import usecase.CreateTrainingMenuService
-import scala.concurrent.ExecutionContext
+import utils.Utils
+
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class CreateTrainingMenuController @Inject()
-(controllerComponents: ControllerComponents, createTrainingMenuService: CreateTrainingMenuService)
+(controllerComponents: ControllerComponents, createTrainingMenuService: CreateTrainingMenuService, utils: Utils)
 (implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
-
   implicit val formats: DefaultFormats.type = DefaultFormats
 
   def store: Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    createTrainingMenuService(
-      JsonMethods
-        .parse(request.body.asJson.get.toString)
-        .extract[TrainingMenu]
-    ).map(resp => Ok(resp.toString))
+    JsonMethods
+      .parse(request.body.asJson.get.toString)
+      .extractOpt[TrainingMenu] match {
+      case Some(value) => createTrainingMenuService(value).map(resp => Ok(resp.toString))
+      case None => Future(BadRequest(Serialization.write(Map("message" -> "bad request"))))
+    }
   }
 }
