@@ -34,19 +34,23 @@ class AuthFilter @Inject()(config: Configuration, utils: Utils)(implicit executi
       case uid if uid.nonEmpty => nextFilter(rh).map(_.withHeaders {
         val userId = utils.getUserId(uid)
         Await.ready(userId, Duration.Inf)
+
         userId.value.get match {
-          case Success(value) => value match {
-            case 0 =>
-              val createdUserId = uid |> utils.createGuestUser
-              Await.ready(createdUserId, Duration.Inf)
-              createdUserId.value.get match {
-                case Success(value) => ("user_id", value.toString)
-                case Failure(exception) => ("user_id", exception.toString)
-              }
-            case _ => ("user_id", value.toString)
-          }
-          case Failure(exception) => ("user_id", exception.toString)
+          case Success(0) =>
+            val createdUserId = uid |> utils.createGuestUser
+            Await.ready(createdUserId, Duration.Inf)
+            createdUserId.value.get match {
+              case Success(value) => ("user_id", value.toString)
+              case Failure(exception) =>
+                println(exception.toString)
+                ("user_id", "")
+            }
+          case Success(value) => ("user_id", value.toString)
+          case Failure(exception) =>
+            println(exception.toString)
+            ("user_id", "")
         }
+
       })
       case _ => Future(Forbidden("invalid"))
     }
