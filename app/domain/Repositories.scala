@@ -66,7 +66,7 @@ trait TrainingMenuRepositoryInterface {
 
   def findById(id: Int): Future[TrainingMenu]
 
-//  def findByUserId(userId: Int, categoryId: Option[Int]): Future[Seq[TrainingMenu]]
+  def findByUserId(userId: Int): Future[Seq[TrainingMenu]]
 
   def insert(trainingMenu: TrainingMenu): Future[Int]
 

@@ -7,5 +7,5 @@ import scala.concurrent.Future
 
 @Singleton
 case class ListTrainingMenuService @Inject()(repository: TrainingMenuRepositoryInterface) {
-  def apply(): Future[Seq[TrainingMenu]] = repository.index()
+  def apply(userId: Int): Future[Seq[TrainingMenu]] = repository.findByUserId(userId)
 }
