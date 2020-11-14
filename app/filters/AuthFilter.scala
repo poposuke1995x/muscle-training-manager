@@ -11,11 +11,10 @@ import play.api.mvc.{Filter, RequestHeader, Result}
 import utils.Utils
 import scala.concurrent.{ExecutionContext, Future}
 
-class AuthFilter @Inject()(config: Configuration, utils: Utils)
-    (
-        implicit executionContext: ExecutionContext,
-        implicit val mat: Materializer
-    ) extends Filter {
+class AuthFilter @Inject()(config: Configuration, utils: Utils)(
+    implicit executionContext: ExecutionContext,
+    implicit val mat: Materializer
+) extends Filter {
 
   val serviceAccount = new FileInputStream(
     config.get[String]("secret.key.path")
@@ -29,33 +28,24 @@ class AuthFilter @Inject()(config: Configuration, utils: Utils)
     case _ => FirebaseApp.getApps.get(0)
   }
 
-  def apply(
-      nextFilter: RequestHeader => Future[Result]
-  )(rh: RequestHeader): Future[Result] = {
-    implicit def Pipeline[T](x: T): utils.Pipeline[T] = utils.Pipeline(x)
-
-    rh.headers
-        .get("Authorization")
-        .getOrElse("") |> utils.getFirebaseUid match {
+  def apply(nextFilter: RequestHeader => Future[Result])(
+      rh: RequestHeader): Future[Result] =
+    utils.getFirebaseUid(rh.headers.get("Authorization").getOrElse("")) match {
       case uid if uid.nonEmpty =>
-        addUserIdToHeader(uid) flatMap { userIdHeader =>
-          nextFilter(rh) map {
+        addUserIdToHeader(uid).flatMap { userIdHeader =>
+          nextFilter(rh).map {
             _.withHeaders(userIdHeader)
           }
         }
       case _ => Future(Forbidden("invalid"))
     }
-  }
 
-  def addUserIdToHeader(uid: String): Future[(String, String)] = {
-    implicit def Pipeline[T](x: T): utils.Pipeline[T] = utils.Pipeline(x)
-
-    utils.getUserId(uid) flatMap { userId =>
-      if (userId != 0) Future(("user_id", userId.toString))
-      else
-        (uid |> utils.createGuestUser) map { userId =>
+  def addUserIdToHeader(uid: String): Future[(String, String)] =
+    utils.getUserId(uid).flatMap {
+      case 0 =>
+        utils.createGuestUser(uid).map { userId =>
           ("user_id", userId.toString)
         }
+      case id => Future(("user_id", id.toString))
     }
-  }
 }
