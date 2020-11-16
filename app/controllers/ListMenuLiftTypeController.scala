@@ -10,13 +10,11 @@ import scala.concurrent.ExecutionContext
 
 class ListMenuLiftTypeController @Inject()
 (controllerComponents: ControllerComponents, listMenuLiftTypeService: ListMenuLiftTypeService)
-(implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
+    (implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
 
   implicit val formats: DefaultFormats.type = DefaultFormats
 
   def index(trainingMenuId: Int, bodyPartId: Option[Int]): Action[AnyContent] = Action.async {
-    listMenuLiftTypeService(
-      trainingMenuId, bodyPartId).map(resp => Ok(Serialization.write(resp))
-    )
+    listMenuLiftTypeService(trainingMenuId, bodyPartId).map { resp => Ok(Serialization.write(resp)) }
   }
 }
