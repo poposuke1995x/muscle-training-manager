@@ -1,6 +1,8 @@
 package filters
 
 import java.io.FileInputStream
+
+import Utils.{Pipeline, getFirebaseUid}
 import akka.stream.Materializer
 import com.google.auth.oauth2.GoogleCredentials
 import com.google.firebase.{FirebaseApp, FirebaseOptions}
@@ -8,10 +10,11 @@ import com.google.inject.Inject
 import play.api.Configuration
 import play.api.mvc.Results.Forbidden
 import play.api.mvc.{Filter, RequestHeader, Result}
-import utils.Utils
+import usecase.UserService
+
 import scala.concurrent.{ExecutionContext, Future}
 
-class AuthFilter @Inject()(config: Configuration, utils: Utils)(
+class AuthFilter @Inject()(config: Configuration, userService: UserService)(
     implicit executionContext: ExecutionContext,
     implicit val mat: Materializer
 ) extends Filter {
@@ -28,24 +31,19 @@ class AuthFilter @Inject()(config: Configuration, utils: Utils)(
     case _ => FirebaseApp.getApps.get(0)
   }
 
-  def apply(nextFilter: RequestHeader => Future[Result])(
-      rh: RequestHeader): Future[Result] =
-    utils.getFirebaseUid(rh.headers.get("Authorization").getOrElse("")) match {
-      case uid if uid.nonEmpty =>
-        addUserIdToHeader(uid).flatMap { userIdHeader =>
-          nextFilter(rh).map {
-            _.withHeaders(userIdHeader)
-          }
-        }
+  def apply(nextFilter: RequestHeader => Future[Result])(rh: RequestHeader): Future[Result] =
+    rh.headers.get("Authorization").getOrElse("") |> getFirebaseUid match {
+      case uid if uid.nonEmpty => addUserIdToHeader(uid).flatMap { userIdHeader =>
+        nextFilter(rh).map(_.withHeaders(userIdHeader))
+      }
       case _ => Future(Forbidden("invalid"))
     }
 
   def addUserIdToHeader(uid: String): Future[(String, String)] =
-    utils.getUserId(uid).flatMap {
-      case 0 =>
-        utils.createGuestUser(uid).map { userId =>
-          ("user_id", userId.toString)
-        }
+    userService.getUserId(uid).flatMap {
+      case 0 => userService.createGuestUser(uid).map { userId =>
+        ("user_id", userId.toString)
+      }
       case id => Future(("user_id", id.toString))
     }
 }
