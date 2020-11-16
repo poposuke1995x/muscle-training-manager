@@ -17,13 +17,17 @@ class RegisterLiftTypesToTrainingMenuController @Inject()
   implicit val formats: DefaultFormats.type = DefaultFormats
 
   def registerLiftTypesToTrainingMenu(trainingMenuId: Int): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    Future.sequence(
-      registerLiftTypesToTrainingMenuService(
-        trainingMenuId,
-        JsonMethods
-          .parse(request.body.asJson.get.toString)
-          .extract[List[TargetedLiftTypeRequest]]
-      )
-    ).map(resp => Ok(Serialization.write(resp)))
+    JsonMethods
+      .parse(request.body.asJson.get.toString)
+      .extractOpt[List[TargetedLiftTypeRequest]] match {
+      case Some(value) => Future.sequence(
+        registerLiftTypesToTrainingMenuService(
+          trainingMenuId,
+          value
+        )
+      ).map(resp => Ok(Serialization.write(resp)))
+      case None => Future(BadRequest(Serialization.write(Map("message" -> "bad request"))))
+    }
+
   }
 }

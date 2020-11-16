@@ -18,6 +18,8 @@ trait LiftActionRepositoryInterface {
 
   def findById(id: Int): Future[LiftAction]
 
+  def findByForeignKeyId(liftTypeId: Int, menuId: Int): Future[LiftAction]
+
   def insert(liftAction: LiftAction): Future[Int]
 
   def update(liftAction: LiftAction): Future[Int]
@@ -35,6 +37,12 @@ trait LiftTypeRepositoryInterface {
   def insert(liftType: LiftType): Future[Int]
 
   def update(liftType: LiftType): Future[Int]
+
+  def updateDefaultAction(
+      liftTypeId: Int,
+      defaultRep: Int,
+      defaultSetCount: Int,
+      defaultWeight: Int): Future[Int]
 
   def share(liftTypeId: Int): Future[Int]
 
@@ -58,7 +66,7 @@ trait TrainingMenuRepositoryInterface {
 
   def findById(id: Int): Future[TrainingMenu]
 
-//  def findByUserId(userId: Int, categoryId: Option[Int]): Future[Seq[TrainingMenu]]
+  def findByUserId(userId: Int): Future[Seq[TrainingMenu]]
 
   def insert(trainingMenu: TrainingMenu): Future[Int]
 
@@ -90,8 +98,4 @@ trait ListLiftTypeRepositoryInterface {
 
 trait ListMenuLiftTypeRepositoryInterface {
   def execute(trainingMenuId: Int, bodyPartId: Option[Int]): Future[(Seq[LiftType], Seq[LiftAction])]
-}
-
-trait UpdateTrainingActionRepositoryInterface {
-  def execute(actions: List[LiftAction]): Future[Int]
 }

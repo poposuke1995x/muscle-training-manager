@@ -18,6 +18,13 @@ class LiftActionRepository @Inject()(protected val dbConfigProvider: DatabaseCon
 
   def findById(id: Int): Future[LiftAction] = db.run(LiftActions.filter(_.id === id).result.head)
 
+  def findByForeignKeyId(liftTypeId: Int, menuId: Int): Future[LiftAction] = db.run(
+    LiftActions
+        .filter(_.liftTypeId === liftTypeId)
+        .filter(_.trainingMenuId === menuId)
+        .result.head
+  )
+
   def insert(liftAction: LiftAction): Future[Int] = db.run(LiftActions += liftAction)
 
   def update(liftAction: LiftAction): Future[Int] = db.run(LiftActions.filter(_.id === liftAction.id).update(liftAction))

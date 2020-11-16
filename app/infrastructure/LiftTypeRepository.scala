@@ -7,8 +7,9 @@ import slick.jdbc.JdbcProfile
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class LiftTypeRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, models: Models)(implicit executionContext: ExecutionContext)
-  extends HasDatabaseConfigProvider[JdbcProfile] with LiftTypeRepositoryInterface {
+class LiftTypeRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, models: Models)
+    (implicit executionContext: ExecutionContext)
+    extends HasDatabaseConfigProvider[JdbcProfile] with LiftTypeRepositoryInterface {
 
   import profile.api._
 
@@ -23,6 +24,18 @@ class LiftTypeRepository @Inject()(protected val dbConfigProvider: DatabaseConfi
   def insert(liftType: LiftType): Future[Int] = db.run(LiftTypes += liftType)
 
   def update(liftType: LiftType): Future[Int] = db.run(LiftTypes.filter(_.id === liftType.id).update(liftType))
+
+  def updateDefaultAction(
+      liftTypeId: Int,
+      defaultRep: Int,
+      defaultSetCount: Int,
+      defaultWeight: Int): Future[Int] =
+    db.run(
+      LiftTypes
+          .filter(_.id === liftTypeId)
+          .map(liftType => (liftType.defaultWeight, liftType.defaultRep, liftType.defaultSetCount))
+          .update((defaultWeight, defaultRep, defaultSetCount))
+    )
 
   def share(liftTypeId: Int): Future[Int] = db.run(LiftTypes.filter(_.id === liftTypeId).map(_.shareFlag).update(true))
 

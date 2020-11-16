@@ -16,14 +16,15 @@ create table if not exists lift_types
     share_flag        boolean     not null default false
 );
 
-insert into lift_types (name, user_id, default_rep, default_weight, default_set_count)
-values ('ベンチプレス', 1, 45, 10, 3);
+insert into lift_types (name, user_id, default_rep, default_weight, default_set_count, share_flag)
+values ('ベンチプレス', 1, 45, 10, 3, true);
 
-insert into lift_types (name, user_id, default_rep, default_weight, default_set_count)
-values ('デッドリフト', 1, 80, 10, 2);
+insert into lift_types (name, user_id, default_rep, default_weight, default_set_count, share_flag)
+values ('デッドリフト', 1, 80, 10, 2, true);
 
-insert into lift_types (name, user_id, default_rep, default_weight, default_set_count)
-values ('スクワット', 1, 70, 8, 3);
+insert into lift_types (name, user_id, default_rep, default_weight, default_set_count, share_flag)
+values ('スクワット', 1, 70, 8, 3, true);
 
 
 -- !Downs
+drop table lift_types;

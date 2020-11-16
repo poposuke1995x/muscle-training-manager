@@ -12,10 +12,10 @@ services:
     volumes:
       - $HOME/workspace/scala_dev/muscle-training-manager-api:/root/muscle-training-manager-api
   db:
-    image: postgres:latest
     container_name: postgres
     build:
-      context: docker
+      context: docker/postgres
+      dockerfile: Dockerfile
     ports:
       - 5432:5432
     volumes:

@@ -1,13 +1,13 @@
 package controllers
 
-import com.google.inject.{Singleton, Inject}
+import com.google.inject.{Inject, Singleton}
 import dto.LiftTypeRequest
 import org.json4s.DefaultFormats
-import org.json4s.native.JsonMethods
+import org.json4s.native.{JsonMethods, Serialization}
 import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents, Request}
 import usecase.UpdateLiftTypeService
 
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class UpdateLiftTypeController @Inject()
@@ -17,8 +17,9 @@ class UpdateLiftTypeController @Inject()
   implicit val formats: DefaultFormats.type = DefaultFormats
 
   def update(liftTypeId: Int): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    val liftTypeRequest = JsonMethods.parse(request.body.asJson.get.toString).extract[LiftTypeRequest]
-    updateLiftTypeService(liftTypeId, liftTypeRequest).map(resp => Ok(resp.toString)
-    )
+    JsonMethods.parse(request.body.asJson.get.toString).extractOpt[LiftTypeRequest] match {
+      case Some(value) => updateLiftTypeService(liftTypeId, value).map(resp => Ok(resp.toString))
+      case None => Future(BadRequest(Serialization.write(Map("message" -> "bad request"))))
+    }
   }
 }

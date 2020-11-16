@@ -22,3 +22,4 @@ insert into lift_actions (lift_type_id, training_menu_id)
 values (1, 1);
 
 -- !Downs
+drop table lift_actions;
