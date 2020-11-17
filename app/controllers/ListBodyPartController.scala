@@ -11,13 +11,11 @@ import scala.concurrent.ExecutionContext
 @Singleton
 class ListBodyPartController @Inject()
 (controllerComponents: ControllerComponents, listBodyPartService: ListBodyPartService)
-(implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
+    (implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
 
   implicit val formats: DefaultFormats.type = DefaultFormats
 
   def index: Action[AnyContent] = Action.async {
-    listBodyPartService().map(bodyParts =>
-      Ok(Serialization.write(bodyParts))
-    )
+    listBodyPartService().map { bodyParts => Ok(Serialization.write(bodyParts)) }
   }
 }

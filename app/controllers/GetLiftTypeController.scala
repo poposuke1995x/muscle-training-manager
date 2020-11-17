@@ -9,13 +9,11 @@ import scala.concurrent.ExecutionContext
 
 class GetLiftTypeController @Inject()
 (controllerComponents: ControllerComponents, getLiftTypeService: GetLiftTypeService)
-(implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
+    (implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
 
   implicit val formats: DefaultFormats.type = DefaultFormats
 
   def show(liftTypeId: Int): Action[AnyContent] = Action.async {
-    getLiftTypeService(liftTypeId).map(liftType =>
-      Ok(Serialization.write(liftType))
-    )
+    getLiftTypeService(liftTypeId).map { liftType => Ok(Serialization.write(liftType)) }
   }
 }

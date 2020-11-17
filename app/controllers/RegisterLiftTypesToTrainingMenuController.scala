@@ -22,12 +22,10 @@ class RegisterLiftTypesToTrainingMenuController @Inject()
     JsonMethods
         .parse(request.body.asJson.get.toString)
         .extractOpt[List[TargetedLiftTypeRequest]] match {
-      case Some(value) => Future.sequence(
-        registerLiftTypesToTrainingMenuService(
-          trainingMenuId,
-          value
-        )
-      ).map(resp => Ok(Serialization.write(resp)))
+      case Some(value) =>
+        Future.sequence(
+          registerLiftTypesToTrainingMenuService(trainingMenuId, value)
+        ).map { resp => Ok(Serialization.write(resp)) }
       case None => Future(BadRequest(Serialization.write(Map("message" -> "bad request"))))
     }
 

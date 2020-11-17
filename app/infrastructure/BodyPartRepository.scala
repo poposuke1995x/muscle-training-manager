@@ -6,8 +6,9 @@ import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 import scala.concurrent.{ExecutionContext, Future}
 
-class BodyPartRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, models: Models)(implicit executionContext: ExecutionContext)
-  extends HasDatabaseConfigProvider[JdbcProfile] with BodyPartRepositoryInterface {
+class BodyPartRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, models: Models)
+    (implicit executionContext: ExecutionContext)
+    extends HasDatabaseConfigProvider[JdbcProfile] with BodyPartRepositoryInterface {
 
   import profile.api._
 

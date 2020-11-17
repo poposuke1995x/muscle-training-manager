@@ -20,6 +20,6 @@ class UserController @Inject()
     (request.headers.get("Authorization").getOrElse("")
         |> getFirebaseUid
         |> userService.getUserId)
-        .map(userId => Ok(Serialization.write(userId)))
+        .map { userId => Ok(Serialization.write(userId)) }
   }
 }

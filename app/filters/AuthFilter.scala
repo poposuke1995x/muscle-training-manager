@@ -41,9 +41,7 @@ class AuthFilter @Inject()(config: Configuration, userService: UserService)(
 
   def addUserIdToHeader(uid: String): Future[(String, String)] =
     userService.getUserId(uid).flatMap {
-      case 0 => userService.createGuestUser(uid).map { userId =>
-        ("user_id", userId.toString)
-      }
+      case 0 => userService.createGuestUser(uid).map { userId => ("user_id", userId.toString) }
       case id => Future(("user_id", id.toString))
     }
 }
