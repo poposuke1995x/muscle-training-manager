@@ -36,6 +36,7 @@ case class ListMenuLiftTypeService @Inject()(repository: ListMenuLiftTypeReposit
       lightSetCount = action.lightSetCount,
       heavyRep = action.heavyRep,
       heavyWeight = action.heavyWeight,
-      heavySetCount = action.heavySetCount
+      heavySetCount = action.heavySetCount,
+      referenceUrl = liftType.referenceUrl
     )
 }

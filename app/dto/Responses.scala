@@ -14,4 +14,5 @@ case class LiftTypesInTrainingMenuRequest(
     heavyRep: Int = 0,
     heavyWeight: Int = 0,
     heavySetCount: Int = 0,
+    referenceUrl: Option[String]
 )
