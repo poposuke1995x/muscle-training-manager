@@ -10,7 +10,7 @@ RUN chmod +x $HOME/.sdkman/bin/sdkman-init.sh
 RUN ["/bin/bash", "-c", "source /root/.sdkman/bin/sdkman-init.sh && sdk install sbt"]
 RUN chsh -s /usr/bin/fish
 RUN curl https://git.io/fisher --create-dirs -sLo ~/.config/fish/functions/fisher.fish
-RUN ["/bin/fish", "-c", "fisher add jethrokuan/fzf"]
+RUN ["/bin/fish", "-c", "fisher install jethrokuan/fzf"]
 COPY config.fish /root/.config/fish/
 COPY ./.vimrc /root/
 WORKDIR /root/muscle-training-manager-api
