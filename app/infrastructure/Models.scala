@@ -6,8 +6,9 @@ import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 import scala.concurrent.ExecutionContext
 
-class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(implicit executionContext: ExecutionContext)
-  extends HasDatabaseConfigProvider[JdbcProfile] {
+class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
+    (implicit executionContext: ExecutionContext)
+    extends HasDatabaseConfigProvider[JdbcProfile] {
 
   import profile.api._
 
@@ -53,16 +54,16 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
     def heavySetCount = column[Int]("heavy_set_count")
 
     def * = (
-      id,
-      liftTypeId,
-      trainingMenuId,
-      lightRep,
-      lightWeight,
-      lightSetCount,
-      heavyRep,
-      heavyWeight,
-      heavySetCount,
-      ).<>(LiftAction.tupled, LiftAction.unapply)
+        id,
+        liftTypeId,
+        trainingMenuId,
+        lightRep,
+        lightWeight,
+        lightSetCount,
+        heavyRep,
+        heavyWeight,
+        heavySetCount,
+        ).<>(LiftAction.tupled, LiftAction.unapply)
   }
 
   class LiftTypesTable(tag: Tag) extends Table[LiftType](tag, "lift_types") {
@@ -88,17 +89,17 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
     def shareFlag = column[Boolean]("share_flag")
 
     def * = (
-      id,
-      name,
-      referenceUrl,
-      description,
-      importedCount,
-      userId,
-      defaultRep,
-      defaultWeight,
-      defaultSetCount,
-      shareFlag
-      ).<>(LiftType.tupled, LiftType.unapply)
+        id,
+        name,
+        referenceUrl,
+        description,
+        importedCount,
+        userId,
+        defaultRep,
+        defaultWeight,
+        defaultSetCount,
+        shareFlag
+        ).<>(LiftType.tupled, LiftType.unapply)
   }
 
   class TargetsTable(tag: Tag) extends Table[Target](tag, "targets") {
@@ -127,12 +128,12 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)(i
     def shareFlag = column[Boolean]("share_flag")
 
     def * = (
-      id,
-      name,
-      description,
-      userId,
-      shareFlag
-      ).<>(TrainingMenu.tupled, TrainingMenu.unapply)
+        id,
+        name,
+        description,
+        userId,
+        shareFlag
+        ).<>(TrainingMenu.tupled, TrainingMenu.unapply)
 
   }
 

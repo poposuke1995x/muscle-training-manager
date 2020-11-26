@@ -7,8 +7,9 @@ import play.api.db.slick.DatabaseConfigProvider
 import play.api.db.slick.HasDatabaseConfigProvider
 import slick.jdbc.JdbcProfile
 
-class CategoryRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, models: Models)(implicit executionContext: ExecutionContext)
-  extends HasDatabaseConfigProvider[JdbcProfile] with CategoryRepositoryInterface {
+class CategoryRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, models: Models)
+    (implicit executionContext: ExecutionContext)
+    extends HasDatabaseConfigProvider[JdbcProfile] with CategoryRepositoryInterface {
 
   import profile.api._
 

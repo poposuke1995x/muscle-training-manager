@@ -10,15 +10,17 @@ import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
 class DeleteLiftTypesFromTrainingMenuController @Inject()
-(controllerComponents: ControllerComponents, deleteLiftTypesFromTrainingMenuService: DeleteLiftTypesFromTrainingMenuService)
-(implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
+(
+    controllerComponents: ControllerComponents,
+    deleteLiftTypesFromTrainingMenuService: DeleteLiftTypesFromTrainingMenuService)
+    (implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
 
   implicit val formats: DefaultFormats.type = DefaultFormats
 
   def deleteLiftTypesFromTrainingMenu(trainingMenuId: Int): Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
     JsonMethods
-      .parse(request.body.asJson.get.toString)
-      .extractOpt[List[Int]] match {
+        .parse(request.body.asJson.get.toString)
+        .extractOpt[List[Int]] match {
       case Some(value) => deleteLiftTypesFromTrainingMenuService(trainingMenuId, value).map(resp => Ok(resp.toString))
       case None => Future(BadRequest(Serialization.write(Map("message" -> "bad request"))))
     }

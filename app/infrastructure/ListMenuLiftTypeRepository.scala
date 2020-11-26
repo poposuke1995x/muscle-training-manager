@@ -9,7 +9,7 @@ import scala.concurrent.{ExecutionContext, Future}
 
 class ListMenuLiftTypeRepository @Inject()
 (protected val dbConfigProvider: DatabaseConfigProvider, models: Models)(implicit executionContext: ExecutionContext)
-  extends HasDatabaseConfigProvider[JdbcProfile] with ListMenuLiftTypeRepositoryInterface {
+    extends HasDatabaseConfigProvider[JdbcProfile] with ListMenuLiftTypeRepositoryInterface {
 
   import profile.api._
 
@@ -24,13 +24,13 @@ class ListMenuLiftTypeRepository @Inject()
       liftActions <- bodyPartId.getOrElse(0) match {
         case bodyPartId if bodyPartId <= 0 =>
           LiftActions
-          .filter(_.trainingMenuId === trainingMenuId)
-          .result
+              .filter(_.trainingMenuId === trainingMenuId)
+              .result
         case bodyPartId if bodyPartId > 0 =>
           LiftActions
-          .filter(_.id inSetBind targets.map(_.liftActionId))
-          .filter(_.trainingMenuId === trainingMenuId)
-          .result
+              .filter(_.id inSetBind targets.map(_.liftActionId))
+              .filter(_.trainingMenuId === trainingMenuId)
+              .result
       }
 
       liftTypes <- LiftTypes.filter(_.id inSetBind liftActions.map(_.liftTypeId)).result

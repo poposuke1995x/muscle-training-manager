@@ -10,13 +10,11 @@ import scala.concurrent.ExecutionContext
 @Singleton
 class ListLiftTypeController @Inject()
 (controllerComponents: ControllerComponents, listLiftTypeService: ListLiftTypeService)
-(implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
+    (implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
 
   implicit val formats: DefaultFormats.type = DefaultFormats
 
   def index(bodyPartId: Option[Int]): Action[AnyContent] = Action.async {
-    listLiftTypeService(bodyPartId).map(liftTypes =>
-      Ok(Serialization.write(liftTypes))
-    )
+    listLiftTypeService(bodyPartId).map { liftTypes => Ok(Serialization.write(liftTypes)) }
   }
 }

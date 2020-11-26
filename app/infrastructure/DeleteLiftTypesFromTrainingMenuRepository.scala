@@ -7,8 +7,10 @@ import slick.jdbc.JdbcProfile
 
 import scala.concurrent.{ExecutionContext, Future}
 
-class DeleteLiftTypesFromTrainingMenuRepository @Inject()(protected val dbConfigProvider: DatabaseConfigProvider, models: Models)(implicit executionContext: ExecutionContext)
-  extends HasDatabaseConfigProvider[JdbcProfile] with DeleteLiftTypesFromTrainingMenuRepositoryInterface {
+class DeleteLiftTypesFromTrainingMenuRepository @Inject()(
+    protected val dbConfigProvider: DatabaseConfigProvider,
+    models: Models)(implicit executionContext: ExecutionContext)
+    extends HasDatabaseConfigProvider[JdbcProfile] with DeleteLiftTypesFromTrainingMenuRepositoryInterface {
 
   import profile.api._
 
@@ -17,9 +19,9 @@ class DeleteLiftTypesFromTrainingMenuRepository @Inject()(protected val dbConfig
   def execute(trainingMenuId: Int, liftTypeIds: List[Int]): Future[Int] = {
     db.run(
       LiftActions
-        .filter(_.trainingMenuId === trainingMenuId)
-        .filter(_.liftTypeId inSetBind liftTypeIds)
-        .delete
+          .filter(_.trainingMenuId === trainingMenuId)
+          .filter(_.liftTypeId inSetBind liftTypeIds)
+          .delete
     )
   }
 }
