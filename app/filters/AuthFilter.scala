@@ -32,10 +32,15 @@ class AuthFilter @Inject()(config: Configuration, userService: UserService)(
   }
 
   def apply(nextFilter: RequestHeader => Future[Result])(rh: RequestHeader): Future[Result] =
+    rh.path match {
+      case "/" => nextFilter(rh)
+      case _ => filterByFirebaseAuth(nextFilter)(rh)
+    }
+
+  def filterByFirebaseAuth(nextFilter: RequestHeader => Future[Result])(rh: RequestHeader): Future[Result] =
     rh.headers.get("Authorization").getOrElse("") |> getFirebaseUid match {
-      case uid if uid.nonEmpty => addUserIdToHeader(uid).flatMap { userIdHeader =>
-        nextFilter(rh).map(_.withHeaders(userIdHeader))
-      }
+      case uid if uid.nonEmpty =>
+        addUserIdToHeader(uid).flatMap { userIdHeader => nextFilter(rh).map(_.withHeaders(userIdHeader)) }
       case _ => Future(Forbidden("invalid"))
     }
 

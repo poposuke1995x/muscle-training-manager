@@ -1,4 +1,5 @@
 # UseCase
+GET     /                                                        controllers.WakeUpController.index
 GET     /body_parts                                              controllers.ListBodyPartController.index
 GET     /categories                                              controllers.ListCategoryController.index
 GET     /training_menu                                           controllers.ListTrainingMenuController.index
@@ -11,6 +12,7 @@ POST    /training_menu/:training_menu_id/lift_types              controllers.Reg
 DELETE  /training_menu/:training_menu_id/lift_types              controllers.DeleteLiftTypesFromTrainingMenuController.deleteLiftTypesFromTrainingMenu(training_menu_id: Int)
 GET     /lift_types                                              controllers.ListLiftTypeController.index(body_part_id: Option[Int])
 POST    /lift_types                                              controllers.CreateLiftTypeController.store
+GET     /lift_types/user                                         controllers.ListUserLiftTypeController.index
 GET     /lift_types/:lift_type_id                                controllers.GetLiftTypeController.show(lift_type_id: Int)
 PATCH   /lift_types/:lift_type_id                                controllers.UpdateLiftTypeController.update(lift_type_id: Int)
 DELETE  /lift_types/:lift_type_id                                controllers.DeleteLiftTypeController.delete(lift_type_id: Int)
