@@ -2,13 +2,13 @@ package usecase
 
 import com.google.inject.Inject
 import domain.{LiftAction, LiftType, ListMenuLiftTypeRepositoryInterface}
-import dto.LiftTypesInTrainingMenuRequest
+import usecase.dto.LiftTypesInTrainingMenuResponse
 
 import scala.concurrent.{ExecutionContext, Future}
 
 case class ListMenuLiftTypeService @Inject()(repository: ListMenuLiftTypeRepositoryInterface)
     (implicit executionContext: ExecutionContext) {
-  def apply(trainingMenuId: Int, bodyPartId: Option[Int]): Future[List[LiftTypesInTrainingMenuRequest]] =
+  def apply(trainingMenuId: Int, bodyPartId: Option[Int]): Future[List[LiftTypesInTrainingMenuResponse]] =
     repository
         .execute(trainingMenuId: Int, bodyPartId: Option[Int])
         .map { resp =>
@@ -22,8 +22,8 @@ case class ListMenuLiftTypeService @Inject()(repository: ListMenuLiftTypeReposit
 
   def genResponse(
       liftType: LiftType,
-      action: LiftAction): LiftTypesInTrainingMenuRequest =
-    LiftTypesInTrainingMenuRequest(
+      action: LiftAction): LiftTypesInTrainingMenuResponse =
+    LiftTypesInTrainingMenuResponse(
       id = liftType.id,
       name = liftType.name,
       description = liftType.description,

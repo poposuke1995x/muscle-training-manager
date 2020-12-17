@@ -1,7 +1,8 @@
 package domain
 
+import usecase.dto.TargetedLiftTypeRequest
+
 import scala.concurrent.Future
-import dto._
 
 
 trait BodyPartRepositoryInterface {
@@ -76,8 +77,8 @@ trait TrainingMenuRepositoryInterface {
 }
 
 trait UserRepositoryInterface {
-  def index(): Future[Seq[User]]
-  def findById(id: Int): Future[User]
+//  def index(): Future[Seq[User]]
+//  def findById(id: Int): Future[User]
   def findIdByUid(uid: String): Future[Int]
   def insert(user: User): Future[Int]
   def update(user: User): Future[Int]

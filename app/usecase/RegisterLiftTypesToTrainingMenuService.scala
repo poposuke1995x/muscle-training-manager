@@ -2,7 +2,7 @@ package usecase
 
 import com.google.inject.Inject
 import domain.RegisterLiftTypesToTrainingMenuRepositoryInterface
-import dto.TargetedLiftTypeRequest
+import usecase.dto.TargetedLiftTypeRequest
 
 import scala.concurrent.Future
 

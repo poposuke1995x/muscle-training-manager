@@ -2,7 +2,7 @@ package usecase
 
 import com.google.inject.{Inject, Singleton}
 import domain.{LiftAction, LiftActionRepositoryInterface, LiftTypeRepositoryInterface}
-import dto.MenuLiftActionRequest
+import usecase.dto.MenuLiftActionRequest
 
 import scala.concurrent.{ExecutionContext, Future}
 

@@ -1,23 +1,19 @@
 # UseCase
-GET     /                                                        controllers.WakeUpController.index
-GET     /body_parts                                              controllers.ListBodyPartController.index
-GET     /categories                                              controllers.ListCategoryController.index
-GET     /training_menu                                           controllers.ListTrainingMenuController.index
-POST    /training_menu                                           controllers.CreateTrainingMenuController.store
-PUT     /training_menu/:training_menu_id                         controllers.UpdateTrainingMenuController.update(training_menu_id: Int)
-DELETE  /training_menu/:training_menu_id                         controllers.DeleteTrainingMenuController.delete(training_menu_id: Int)
-PUT     /training_menu/:training_menu_id/actions                 controllers.UpdateTrainingActionController.update(training_menu_id: Int)
-GET     /training_menu/:training_menu_id/lift_types              controllers.ListMenuLiftTypeController.index(training_menu_id: Int, body_part_id: Option[Int])
-POST    /training_menu/:training_menu_id/lift_types              controllers.RegisterLiftTypesToTrainingMenuController.registerLiftTypesToTrainingMenu(training_menu_id: Int)
-DELETE  /training_menu/:training_menu_id/lift_types              controllers.DeleteLiftTypesFromTrainingMenuController.deleteLiftTypesFromTrainingMenu(training_menu_id: Int)
-GET     /lift_types                                              controllers.ListLiftTypeController.index(body_part_id: Option[Int])
-POST    /lift_types                                              controllers.CreateLiftTypeController.store
-GET     /lift_types/user                                         controllers.ListUserLiftTypeController.index
-GET     /lift_types/:lift_type_id                                controllers.GetLiftTypeController.show(lift_type_id: Int)
-PATCH   /lift_types/:lift_type_id                                controllers.UpdateLiftTypeController.update(lift_type_id: Int)
-DELETE  /lift_types/:lift_type_id                                controllers.DeleteLiftTypeController.delete(lift_type_id: Int)
-PUT     /lift_types/:lift_type_id/share                          controllers.ShareLiftTypeController.share(lift_type_id: Int)
-
-
-# Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET     /                                                        presentation.WakeUpController.index
+GET     /body_parts                                              presentation.ListBodyPartController.index
+GET     /categories                                              presentation.ListCategoryController.index
+GET     /training_menu                                           presentation.ListTrainingMenuController.index
+POST    /training_menu                                           presentation.CreateTrainingMenuController.store
+PUT     /training_menu/:training_menu_id                         presentation.UpdateTrainingMenuController.update(training_menu_id: Int)
+DELETE  /training_menu/:training_menu_id                         presentation.DeleteTrainingMenuController.delete(training_menu_id: Int)
+PUT     /training_menu/:training_menu_id/actions                 presentation.UpdateTrainingActionController.update(training_menu_id: Int)
+GET     /training_menu/:training_menu_id/lift_types              presentation.ListMenuLiftTypeController.index(training_menu_id: Int, body_part_id: Option[Int])
+POST    /training_menu/:training_menu_id/lift_types              presentation.RegisterLiftTypesToTrainingMenuController.registerLiftTypesToTrainingMenu(training_menu_id: Int)
+DELETE  /training_menu/:training_menu_id/lift_types              presentation.DeleteLiftTypesFromTrainingMenuController.deleteLiftTypesFromTrainingMenu(training_menu_id: Int)
+GET     /lift_types                                              presentation.ListLiftTypeController.index(body_part_id: Option[Int])
+POST    /lift_types                                              presentation.CreateLiftTypeController.store
+GET     /lift_types/user                                         presentation.ListUserLiftTypeController.index
+GET     /lift_types/:lift_type_id                                presentation.GetLiftTypeController.show(lift_type_id: Int)
+PATCH   /lift_types/:lift_type_id                                presentation.UpdateLiftTypeController.update(lift_type_id: Int)
+DELETE  /lift_types/:lift_type_id                                presentation.DeleteLiftTypeController.delete(lift_type_id: Int)
+PUT     /lift_types/:lift_type_id/share                          presentation.ShareLiftTypeController.share(lift_type_id: Int)

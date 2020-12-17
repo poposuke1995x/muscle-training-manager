@@ -2,7 +2,8 @@ package usecase
 
 import com.google.inject.{Inject, Singleton}
 import domain.{TrainingMenu, TrainingMenuRepositoryInterface}
-import dto.TrainingMenuDetailRequest
+import usecase.dto.TrainingMenuDetailRequest
+
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton

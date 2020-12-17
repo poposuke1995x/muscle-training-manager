@@ -1,9 +1,10 @@
 package infrastructure
 
-import domain.{BodyPart, Category, LiftAction, LiftType, Target, TrainingMenu, User}
-import javax.inject.Inject
+import domain._
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
+
+import javax.inject.Inject
 import scala.concurrent.ExecutionContext
 
 class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)

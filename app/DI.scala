@@ -1,18 +1,20 @@
 import com.google.inject.AbstractModule
 import domain._
+import infrastructure.composite.{DeleteLiftTypesFromTrainingMenuRepository, ListLiftTypeRepository, ListMenuLiftTypeRepository, RegisterLiftTypesToTrainingMenuRepository}
+import infrastructure.datasource.{BodyPartRepository, CategoryRepository, LiftActionRepository, LiftTypeRepository, TargetRepository, TrainingMenuRepository, UserRepository}
 
 class DI extends AbstractModule {
   override def configure(): Unit = {
-    bind(classOf[BodyPartRepositoryInterface]).to(classOf[infrastructure.BodyPartRepository])
-    bind(classOf[CategoryRepositoryInterface]).to(classOf[infrastructure.CategoryRepository])
-    bind(classOf[LiftActionRepositoryInterface]).to(classOf[infrastructure.LiftActionRepository])
-    bind(classOf[LiftTypeRepositoryInterface]).to(classOf[infrastructure.LiftTypeRepository])
-    bind(classOf[TargetRepositoryInterface]).to(classOf[infrastructure.TargetRepository])
-    bind(classOf[TrainingMenuRepositoryInterface]).to(classOf[infrastructure.TrainingMenuRepository])
-    bind(classOf[UserRepositoryInterface]).to(classOf[infrastructure.UserRepository])
-    bind(classOf[RegisterLiftTypesToTrainingMenuRepositoryInterface]).to(classOf[infrastructure.RegisterLiftTypesToTrainingMenuRepository])
-    bind(classOf[DeleteLiftTypesFromTrainingMenuRepositoryInterface]).to(classOf[infrastructure.DeleteLiftTypesFromTrainingMenuRepository])
-    bind(classOf[ListLiftTypeRepositoryInterface]).to(classOf[infrastructure.ListLiftTypeRepository])
-    bind(classOf[ListMenuLiftTypeRepositoryInterface]).to(classOf[infrastructure.ListMenuLiftTypeRepository])
+    bind(classOf[BodyPartRepositoryInterface]).to(classOf[BodyPartRepository])
+    bind(classOf[CategoryRepositoryInterface]).to(classOf[CategoryRepository])
+    bind(classOf[LiftActionRepositoryInterface]).to(classOf[LiftActionRepository])
+    bind(classOf[LiftTypeRepositoryInterface]).to(classOf[LiftTypeRepository])
+    bind(classOf[TargetRepositoryInterface]).to(classOf[TargetRepository])
+    bind(classOf[TrainingMenuRepositoryInterface]).to(classOf[TrainingMenuRepository])
+    bind(classOf[UserRepositoryInterface]).to(classOf[UserRepository])
+    bind(classOf[RegisterLiftTypesToTrainingMenuRepositoryInterface]).to(classOf[RegisterLiftTypesToTrainingMenuRepository])
+    bind(classOf[DeleteLiftTypesFromTrainingMenuRepositoryInterface]).to(classOf[DeleteLiftTypesFromTrainingMenuRepository])
+    bind(classOf[ListLiftTypeRepositoryInterface]).to(classOf[ListLiftTypeRepository])
+    bind(classOf[ListMenuLiftTypeRepositoryInterface]).to(classOf[ListMenuLiftTypeRepository])
   }
 }

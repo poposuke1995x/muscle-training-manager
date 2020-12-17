@@ -1,7 +1,5 @@
 package domain
 
-//Todo: Value Objectの導入
-
 case class User(id: Option[Int], name: String, firebaseUid: String) {
   def genUserName(): String = "@" + this.name
 }
@@ -18,7 +16,6 @@ case class LiftType(
     defaultSetCount: Int = 0,
     shareFlag: Boolean = false
 )
-
 case class BodyPart(id: Option[Int], name: String, categoryId: Int)
 
 case class TrainingMenu(
@@ -39,7 +36,6 @@ case class LiftAction(
     heavyRep: Int = 0,
     heavyWeight: Int = 0,
     heavySetCount: Int = 0,
-    //                       userUid: String,
 )
 
 case class Target(

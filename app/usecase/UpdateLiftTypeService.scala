@@ -2,7 +2,8 @@ package usecase
 
 import com.google.inject.{Inject, Singleton}
 import domain.{LiftType, LiftTypeRepositoryInterface}
-import dto.LiftTypeRequest
+import usecase.dto.LiftTypeRequest
+
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
