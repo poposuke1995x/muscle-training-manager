@@ -1,4 +1,5 @@
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserRecord.UpdateRequest
 
 package object Utils {
 
@@ -9,6 +10,15 @@ package object Utils {
   def getFirebaseUid(idToken: String): String =
     try FirebaseAuth.getInstance.verifyIdToken(idToken).getUid
     catch {
-      case _: Any => ""
+      case err: Any => println(err)
+        ""
+    }
+
+  def updateFirebasePassword(uid: String)(newPassword: String): String =
+    try (new UpdateRequest(uid).setPassword(newPassword) |> FirebaseAuth.getInstance.updateUser).getUid
+    catch {
+      case err: Any =>
+        println(err)
+        ""
     }
 }
