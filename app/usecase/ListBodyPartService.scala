@@ -1,7 +1,8 @@
 package usecase
 
 import com.google.inject.Inject
-import domain.{BodyPart, BodyPartRepositoryInterface}
+import domain.BodyPart
+import domain.lifecycle.BodyPartRepositoryInterface
 
 import scala.concurrent.Future
 

@@ -1,15 +1,13 @@
 package controllers
 
-import Utils.{Pipeline, getFirebaseUid}
-import com.google.inject.{Inject, Singleton}
-import org.json4s.DefaultFormats
-import org.json4s.native.Serialization
+import Utils.{Pipeline, convertModelToResp, getFirebaseUid, responseError}
+import com.google.inject.Inject
+import play.api.mvc.Results.Forbidden
 import play.api.mvc._
 import usecase.{ListUserLiftTypeService, UserService}
 
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{ExecutionContext, Future}
 
-@Singleton
 class ListUserLiftTypeController @Inject()
 (
     controllerComponents: ControllerComponents,
@@ -17,14 +15,28 @@ class ListUserLiftTypeController @Inject()
     userService: UserService)
     (implicit executionContext: ExecutionContext) extends AbstractController(controllerComponents) {
 
-  implicit val formats: DefaultFormats.type = DefaultFormats
 
   def index: Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
-    (request.headers.get("Authorization").getOrElse("")
-        |> getFirebaseUid
-        |> userService.getUserId)
-        .flatMap {
-          userId => listUserLiftTypeService(userId).map { liftTypes => Ok(Serialization.write(liftTypes)) }
+    request |> getFirebaseUid match {
+      case None => Future(Forbidden(responseError("Forbidden")))
+      case Some(uid) =>
+        uid |> userService.getUserId flatMap {
+          case Some(userId) => listUserLiftTypeService(userId).map(resp => Ok(convertModelToResp(resp)))
+          case None => Future {
+            InternalServerError(responseError("InternalServerError"))
+          }
         }
+    }
+
+
+
+
+    //    map {
+    //      _ |> userService.getUserId map {
+    //        _.map{
+    //          listUserLiftTypeService(_).map { liftTypes => Ok(convertModelToResp(liftTypes)) }
+    //        }
+    //      }
+    //    }
   }
 }

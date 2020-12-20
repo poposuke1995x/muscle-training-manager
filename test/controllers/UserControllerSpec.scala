@@ -2,6 +2,7 @@ package controllers
 
 import Utils.Pipeline
 import com.google.firebase.auth.FirebaseAuth
+import com.typesafe.config.ConfigFactory
 import org.json4s.DefaultFormats
 import org.json4s.native.{JsonMethods, Serialization}
 import org.scalatestplus.play._
@@ -19,7 +20,7 @@ import scala.concurrent.duration.Duration
 class UserControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecting {
 
   implicit val formats: DefaultFormats.type = DefaultFormats
-  val uid = "testuseruid"
+  val uid: String = ConfigFactory.load().getString("test.firebase.uid")
 
   case class FirebaseResponse(
       kind: String,
@@ -33,7 +34,7 @@ class UserControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecting
 
   def getIdToken(customToken: String): Future[String] = {
     val ws: WSClient = app.injector.instanceOf(classOf[WSClient])
-    val url = "https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken?key=$webapikey"
+    val url = ConfigFactory.load().getString("test.firebase.verify.url")
     ws.url(url)
         .post(Serialization.write(Map("token" -> customToken, "returnSecureToken" -> true)))
         .map(response => JsonMethods

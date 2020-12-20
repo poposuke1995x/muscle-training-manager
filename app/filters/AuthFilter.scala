@@ -1,17 +1,16 @@
 package filters
 
-import java.io.FileInputStream
-
-import Utils.{Pipeline, getFirebaseUid}
+import Utils.{Pipeline, convertModelToResp, getFirebaseUid, responseError}
 import akka.stream.Materializer
 import com.google.auth.oauth2.GoogleCredentials
 import com.google.firebase.{FirebaseApp, FirebaseOptions}
 import com.google.inject.Inject
 import play.api.Configuration
-import play.api.mvc.Results.Forbidden
+import play.api.mvc.Results.{Forbidden, InternalServerError}
 import play.api.mvc.{Filter, RequestHeader, Result}
 import usecase.UserService
 
+import java.io.FileInputStream
 import scala.concurrent.{ExecutionContext, Future}
 
 class AuthFilter @Inject()(config: Configuration, userService: UserService)(
@@ -34,19 +33,25 @@ class AuthFilter @Inject()(config: Configuration, userService: UserService)(
   def apply(nextFilter: RequestHeader => Future[Result])(rh: RequestHeader): Future[Result] =
     rh.path match {
       case "/" => nextFilter(rh)
+//      case "/body_parts" => nextFilter(rh)
       case _ => filterByFirebaseAuth(nextFilter)(rh)
     }
 
   def filterByFirebaseAuth(nextFilter: RequestHeader => Future[Result])(rh: RequestHeader): Future[Result] =
-    rh.headers.get("Authorization").getOrElse("") |> getFirebaseUid match {
-      case uid if uid.nonEmpty =>
-        addUserIdToHeader(uid).flatMap { userIdHeader => nextFilter(rh).map(_.withHeaders(userIdHeader)) }
-      case _ => Future(Forbidden("invalid"))
+    rh |> getFirebaseUid match {
+      case Some(uid) => addUserIdToHeader(uid).flatMap {
+        case Left(value) => Future(value)
+        case Right(value) => nextFilter(rh).map(_.withHeaders(value))
+      }
+      case None => Future(Forbidden(responseError("Forbidden")))
     }
 
-  def addUserIdToHeader(uid: String): Future[(String, String)] =
+  def addUserIdToHeader(uid: String): Future[Either[Result, (String, String)]] =
     userService.getUserId(uid).flatMap {
-      case 0 => userService.createGuestUser(uid).map { userId => ("user_id", userId.toString) }
-      case id => Future(("user_id", id.toString))
+      case Some(id) => Future(Right(("user_id", id.toString)))
+      case None => userService.createGuestUser(uid).map {
+        case Some(userId) => Right(("user_id", userId.toString))
+        case None => Left(InternalServerError(responseError("InternalServerError")))
+      }
     }
 }

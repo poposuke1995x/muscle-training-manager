@@ -1,7 +1,9 @@
-package infrastructure
+package infrastructure.composite
 
 import com.google.inject.Inject
 import domain._
+import domain.lifecycle.ListLiftTypeRepositoryInterface
+import infrastructure.Models
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 
