@@ -40,11 +40,6 @@ package object Utils {
         None
     }
 
-  def checkIdentification(uid: String)(password: String): Boolean = {
-    FirebaseAuth.getInstance.
-
-  }
-
   def responseError(errorStatus: String): String =
     convertModelToResp {
       ("message", ConfigFactory.load().getString(s"error.$errorStatus"))
