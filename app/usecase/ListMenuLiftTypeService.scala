@@ -1,8 +1,9 @@
 package usecase
 
 import com.google.inject.Inject
-import domain.{LiftAction, LiftType, ListMenuLiftTypeRepositoryInterface}
-import dto.LiftTypesInTrainingMenuRequest
+import domain.lifecycle.ListMenuLiftTypeRepositoryInterface
+import domain.{LiftAction, LiftType}
+import usecase.dto.LiftTypesInTrainingMenuRequest
 
 import scala.concurrent.{ExecutionContext, Future}
 

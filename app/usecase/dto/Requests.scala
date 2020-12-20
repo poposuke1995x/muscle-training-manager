@@ -1,4 +1,6 @@
-package dto
+package usecase.dto
+
+import scala.util.matching.Regex
 
 case class TargetedLiftTypeRequest(
     id: Int,
@@ -41,3 +43,14 @@ case class MenuLiftActionRequest(
     userId: Int = 0,
     name: Option[String]
 )
+
+case class UpdatePasswordRequest(newPassword: String, confirmPassword: String) {
+  def validate: Either[String, String] = {
+    val matchPattern: Regex = "^(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9!\"#$%&'()\\-^@;:,./|`{+*}<>?_]{8,32}$".r
+    newPassword match {
+      case newPassword if newPassword != confirmPassword => Left("パスワードと確認用パスワードが不一致です")
+      case matchPattern() => Right(newPassword)
+      case _ => Left("パスワードは8~32文字の半角英数字と記号を組み合わせて指定してください")
+    }
+  }
+}

@@ -2,7 +2,8 @@ package infrastructure
 
 import scala.concurrent.{ExecutionContext, Future}
 import javax.inject.Inject
-import domain.{Category, CategoryRepositoryInterface}
+import domain.Category
+import domain.lifecycle.CategoryRepositoryInterface
 import play.api.db.slick.DatabaseConfigProvider
 import play.api.db.slick.HasDatabaseConfigProvider
 import slick.jdbc.JdbcProfile
@@ -17,7 +18,7 @@ class CategoryRepository @Inject()(protected val dbConfigProvider: DatabaseConfi
 
   def index(): Future[List[Category]] = db.run(Categories.result).map(_.toList)
 
-  def findById(id: Int): Future[Category] = db.run(Categories.filter(_.id === id).result.head)
+  def findById(id: Int): Future[Option[Category]] = db.run(Categories.filter(_.id === id).result.headOption)
 
 
 }

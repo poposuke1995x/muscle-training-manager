@@ -1,30 +1,32 @@
 package usecase
 
-import com.google.inject.{Inject, Singleton}
-import domain.{LiftAction, LiftActionRepositoryInterface, LiftTypeRepositoryInterface}
-import dto.MenuLiftActionRequest
+import com.google.inject.Inject
+import domain.LiftAction
+import domain.lifecycle.{LiftActionRepositoryInterface, LiftTypeRepositoryInterface}
+import usecase.dto.MenuLiftActionRequest
 
 import scala.concurrent.{ExecutionContext, Future}
 
-@Singleton
 case class UpdateTrainingActionService @Inject()
 (
     liftActionRepository: LiftActionRepositoryInterface,
     liftTypeRepository: LiftTypeRepositoryInterface,
 )(implicit executionContext: ExecutionContext) {
 
-  def apply(actions: List[MenuLiftActionRequest]): Future[Int] =
+  def apply(actions: List[MenuLiftActionRequest]): Future[Option[List[LiftAction]]] = Future.sequence {
     actions
         .map { action =>
           updateDefaultAction(action)
           liftActionRepository
               .findByForeignKeyId(liftTypeId = action.id, menuId = action.trainingMenuId)
-              .map(_.id)
-              .flatMap { actionId => updateLiftAction(actionId, action) }
+              .flatMap {
+                case Some(foundAction) => updateLiftAction(foundAction.id, action)
+                case None => Future.successful(None)
+              }
         }
-        .reduce { (acc, cur) => acc.flatMap { acc_v => cur.map(cur_v => acc_v * cur_v) } }
+  }.map { v => Option(v.flatten) }
 
-  def updateDefaultAction(action: MenuLiftActionRequest): Future[Int] =
+  def updateDefaultAction(action: MenuLiftActionRequest): Future[Option[(Int, Int, Int, Int)]] =
     liftTypeRepository.updateDefaultAction(
       liftTypeId = action.id,
       defaultWeight = action.defaultWeight,
@@ -32,7 +34,7 @@ case class UpdateTrainingActionService @Inject()
       defaultSetCount = action.defaultSetCount
     )
 
-  def updateLiftAction(actionId: Option[Int], action: MenuLiftActionRequest): Future[Int] =
+  def updateLiftAction(actionId: Option[Int], action: MenuLiftActionRequest): Future[Option[LiftAction]] =
     liftActionRepository.update(
       LiftAction(
         id = actionId,

@@ -1,10 +1,11 @@
-package infrastructure
+package infrastructure.composite
 
-import domain.DeleteLiftTypesFromTrainingMenuRepositoryInterface
-import javax.inject.Inject
+import domain.lifecycle.DeleteLiftTypesFromTrainingMenuRepositoryInterface
+import infrastructure.Models
 import play.api.db.slick.{DatabaseConfigProvider, HasDatabaseConfigProvider}
 import slick.jdbc.JdbcProfile
 
+import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
 class DeleteLiftTypesFromTrainingMenuRepository @Inject()(
@@ -16,12 +17,14 @@ class DeleteLiftTypesFromTrainingMenuRepository @Inject()(
 
   private val LiftActions = TableQuery[models.LiftActionsTable]
 
-  def execute(trainingMenuId: Int, liftTypeIds: List[Int]): Future[Int] = {
+  def execute(trainingMenuId: Int, liftTypeIds: List[Int]): Future[Boolean] =
     db.run(
       LiftActions
           .filter(_.trainingMenuId === trainingMenuId)
           .filter(_.liftTypeId inSetBind liftTypeIds)
           .delete
-    )
-  }
+    ).map {
+      case 0 => false
+      case _ => true
+    }
 }
