@@ -1,19 +1,24 @@
 package usecase
 
 import com.google.inject.{Inject, Singleton}
-import domain.{TrainingMenu, TrainingMenuRepositoryInterface}
-import dto.TrainingMenuDetailRequest
+import domain.TrainingMenu
+import domain.lifecycle.TrainingMenuRepositoryInterface
+import usecase.dto.TrainingMenuDetailRequest
+
 import scala.concurrent.{ExecutionContext, Future}
 
-@Singleton
 case class UpdateTrainingMenuService @Inject()
 (repository: TrainingMenuRepositoryInterface)(implicit executionContext: ExecutionContext) {
-  def apply(trainingMenuId: Int, trainingMenuDetailRequest: TrainingMenuDetailRequest): Future[Int] = for {
-    origin <- repository.findById(trainingMenuId)
-    result <- repository.update(genTrainingMenu(origin: TrainingMenu, trainingMenuDetailRequest: TrainingMenuDetailRequest))
-  } yield result
+  def apply(trainingMenuId: Int, trainingMenuDetailRequest: TrainingMenuDetailRequest): Future[Option[TrainingMenu]] =
+    repository.findById(trainingMenuId).flatMap {
+      case Some(value) => repository.update(genTrainingMenu(value: TrainingMenu, trainingMenuDetailRequest: TrainingMenuDetailRequest))
+      case None => Future.successful(None)
+    }
 
-  def genTrainingMenu(origin: TrainingMenu, trainingMenuDetailRequest: TrainingMenuDetailRequest): TrainingMenu = TrainingMenu(
+
+  def genTrainingMenu(
+      origin: TrainingMenu,
+      trainingMenuDetailRequest: TrainingMenuDetailRequest): TrainingMenu = TrainingMenu(
     id = origin.id,
     name = trainingMenuDetailRequest.name,
     description = Some(trainingMenuDetailRequest.description),

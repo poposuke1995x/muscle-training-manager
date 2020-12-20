@@ -1,15 +1,14 @@
 package controllers
 
 import Utils.{Pipeline, getFirebaseUid}
-import com.google.inject.{Inject, Singleton}
+import com.google.inject.Inject
 import org.json4s.DefaultFormats
 import org.json4s.native.Serialization
-import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents, Request}
+import play.api.mvc._
 import usecase.{ListTrainingMenuService, UserService}
 
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{ExecutionContext, Future}
 
-@Singleton
 class ListTrainingMenuController @Inject()
 (
     controllerComponents: ControllerComponents,
@@ -23,11 +22,14 @@ class ListTrainingMenuController @Inject()
 
   def index: Action[AnyContent] = Action.async { implicit request: Request[AnyContent] =>
 
-    (request.headers.get("Authorization").getOrElse("")
-        |> getFirebaseUid
-        |> userService.getUserId)
-        .flatMap {
-          listTrainingMenuService(_).map { trainingMenu => Ok(Serialization.write(trainingMenu)) }
-        }
+    request |> getFirebaseUid match {
+      case None => Future(Ok)
+      case Some(uid) => uid |> userService.getUserId flatMap {
+        case Some(userId) => listTrainingMenuService(userId).map { trainingMenu => Ok(Serialization.write(trainingMenu)) }
+        case None => Future(Ok)
+      }
+    }
+
+
   }
 }

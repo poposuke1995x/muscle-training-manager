@@ -76,8 +76,6 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
 
     def description = column[Option[String]]("description")
 
-    def importedCount = column[Int]("imported_count")
-
     def userId = column[Int]("user_id")
 
     def defaultRep = column[Int]("default_rep")
@@ -93,7 +91,6 @@ class Models @Inject()(protected val dbConfigProvider: DatabaseConfigProvider)
         name,
         referenceUrl,
         description,
-        importedCount,
         userId,
         defaultRep,
         defaultWeight,

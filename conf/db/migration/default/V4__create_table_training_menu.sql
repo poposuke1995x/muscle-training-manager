@@ -1,6 +1,6 @@
 -- TrainingMenu schema
 
--- !Ups
+
 
 create table if not exists training_menu
 (
@@ -11,8 +11,5 @@ create table if not exists training_menu
     share_flag  boolean default false
 );
 
-insert into training_menu (name, user_id, share_flag)
-values ('サンプルメニュー', 1, true);
 
--- !Downs
-drop table training_menu;
+

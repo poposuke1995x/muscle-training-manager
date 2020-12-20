@@ -1,11 +1,11 @@
 package usecase
 
 import com.google.inject.{Inject, Singleton}
-import domain.{TrainingMenu, TrainingMenuRepositoryInterface}
+import domain.TrainingMenu
+import domain.lifecycle.TrainingMenuRepositoryInterface
 
 import scala.concurrent.Future
 
-@Singleton
 case class CreateTrainingMenuService @Inject()(repository: TrainingMenuRepositoryInterface) {
-  def apply(trainingMenu: TrainingMenu): Future[Int] = repository.insert(trainingMenu)
+  def apply(trainingMenu: TrainingMenu): Future[Option[TrainingMenu]] = repository.insert(trainingMenu)
 }

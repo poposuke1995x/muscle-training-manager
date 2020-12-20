@@ -1,4 +1,4 @@
-package dto
+package usecase.dto
 
 case class LiftTypesInTrainingMenuRequest(
     id: Option[Int],
@@ -16,3 +16,4 @@ case class LiftTypesInTrainingMenuRequest(
     heavySetCount: Int = 0,
     referenceUrl: Option[String]
 )
+

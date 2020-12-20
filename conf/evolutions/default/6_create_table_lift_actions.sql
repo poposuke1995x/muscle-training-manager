@@ -18,8 +18,7 @@ create table if not exists lift_actions
 alter table lift_actions
     add constraint unique_lift_action unique (lift_type_id, training_menu_id);
 
-insert into lift_actions (lift_type_id, training_menu_id)
-values (1, 1);
+
 
 -- !Downs
 drop table lift_actions;
