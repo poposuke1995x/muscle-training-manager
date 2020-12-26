@@ -11,7 +11,7 @@ libraryDependencies ++= Seq(
   guice,filters,ws,
   "com.google.firebase"    % "firebase-admin"         % "6.8.1",
   "org.json4s"             %% "json4s-native"         % "3.6.9",
-  "org.postgresql"         % "postgresql"             % "42.2.9",
+  "org.postgresql"         % "postgresql"             % "42.2.18",
   "com.typesafe.play"      %% "play-slick"            % "5.0.0",
   "org.flywaydb"           %% "flyway-play"           % "6.0.0",
   "javax.xml.bind"         % "jaxb-api"               % "2.3.0",
